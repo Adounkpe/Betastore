@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gérez votre compte BetaStore - Profil, commandes, notifications et paramètres personnalisés">
+    <title>Mon Compte - BetaStore</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .account-container {
+            margin-top: 120px;
+            min-height: calc(100vh - 120px);
+            background: linear-gradient(135deg, #050b29 0%, #764ba2 100%);
+            padding: 2rem 0;
+        }
+        
+        .account-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .profile-header {
+            background: linear-gradient(135deg, #555555 0%, #e0e0e2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            margin: 0 auto 1rem;
+            display: block;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .nav-tabs {
+            border: none;
+            background: #f8f9fa;
+            padding: 0 1rem;
+        }
+        
+        .nav-tabs .nav-link {
+            border: none;
+            color: #6c757d;
+            font-weight: 500;
+            padding: 1rem 1.5rem;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-tabs .nav-link.active {
+            background: white;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        .tab-content {
+            padding: 2rem;
+        }
+        
+        .order-card {
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .order-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .order-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-delivered {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-shipped {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-processing {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .notification-item {
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f8f9fa;
+            border-radius: 0 10px 10px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .notification-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+        
+        .notification-time {
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+        
+        .settings-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-switch {
+            padding-left: 2.5rem;
+        }
+        
+        .form-switch .form-check-input {
+            width: 3rem;
+            height: 1.5rem;
+            margin-left: -2.5rem;
+        }
+        
+        .loyalty-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .loyalty-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .loyalty-points {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-ring {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto;
+        }
+        
+        .progress-ring circle {
+            fill: none;
+            stroke-width: 8;
+            stroke-linecap: round;
+        }
+        
+        .progress-ring .bg {
+            stroke: rgba(255,255,255,0.2);
+        }
+        
+        .progress-ring .progress {
+            stroke: #28a745;
+            stroke-dasharray: 251.2;
+            stroke-dashoffset: 125.6;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+            transition: stroke-dashoffset 0.5s ease;
+        }
+        
+        .achievement-badge {
+            display: inline-block;
+            background: #ffc107;
+            color: #212529;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+        
+        .achievement-badge.gold {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+        }
+        
+        .achievement-badge.silver {
+            background: linear-gradient(45deg, #c0c0c0, #e5e5e5);
+        }
+        
+        .achievement-badge.bronze {
+            background: linear-gradient(45deg, #cd7f32, #daa520);
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .quick-action-btn {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            text-decoration: none;
+            color: #495057;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .quick-action-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .quick-action-btn i {
+            font-size: 2rem;
+            color: #667eea;
+        }
+        
+        @media (max-width: 768px) {
+            .account-container {
+                margin-top: 100px;
+                padding: 1rem 0;
+            }
+            
+            .profile-header {
+                padding: 1.5rem;
+            }
+            
+            .profile-avatar {
+                width: 80px;
+                height: 80px;
+            }
+            
+            .nav-tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+            }
+            
+            .nav-tabs .nav-link {
+                white-space: nowrap;
+                padding: 0.75rem 1rem;
+            }
+            
+            .tab-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header moderne -->
+   <header class="fixed-top pt-2" style="transition: top 0.4s ease; background-image: url(v1016-b-09.jpg);">
+        <div class="container-fluid p-2">
+            <div class="row">
+                <div class="col col-md-9 col-lg-12 d-flex flex-row justify-content-between align-items-center">
+                    <a class="navbar-brand ms-4" href="index.html">
+                        <i class="bx bxs-cart me-2 fs-2"></i>
+                        <span>BetaStore</span>
+                    </a>
+                    <form action="#" class="d-flex align-items-center" id="searchForm" method="submit"
+                        style="width: 25%;">
+                        <input type="text" class="h-25 m-auto" placeholder="Rechercher un produit.." id="search">
+                    </form>
+
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a href="cartshop.html" class="nav-link">
+                                <i class="bx bxs-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="account.html" class="nav-link">
+                                <i class="bx bxs-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg p-2 bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-compass me-1"></i>Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="discoverides.html" class="nav-link fs-6 text-light">
+                                <i class="bx bx-info-circle me-1"></i>Découvrir
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-phone me-1"></i>Contact
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-outline-light text-light" id="loginBtn">
+                            Se connecter
+                        </button>
+                        <button class="btn btn-outline-success" id="registerBtn">
+                            S'inscrire
+                        </button>
+                    </div>
+
+                    <!-- Modals modernisés -->
+                    <div id="signupModal" class="modal justify-content-center">
+                        <div class="modal-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <h4 class="h2 fw-bold">Connectez-vous</h4>
+                            <form>
+                                <label class="form-label">Nom d'utilisateur ou email:</label><br>
+                                <input type="text" name="username" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" maxlength="10" minlength="10" required><br><br>
+                                <button type="submit" class="btn-signup w-100 rounded-pill">Se
+                                    connecter</button><br><br>
+                                <a href="#" class="p">Mot de passe oublié ?</a>
+                                <p class="p">Pas encore de compte ? <a href="#" class="text-success"
+                                        id="register1Btn">Créez-en un</a>
+                                </p>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 5%; bottom: 90%"
+                                onclick="document.getElementById('signupModal').style.display='none'"></button>
+                        </div>
+                    </div>
+
+                    <div id="loginModal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <h4 class="h2 fw-bold">Créez votre compte</h4>
+                                    <form>
+                                        <label class="form-label">Nom:</label><br>
+                                        <input type="text" name="lastname" required><br>
+                                        <label class="form-label">Prénom:</label><br>
+                                        <input type="text" name="name" required><br>
+                                        <label class="form-label">Email ou Téléphone:</label><br><br>
+                                        <input type="text" name="email" placeholder="adounkpemike@gmail.com"
+                                            required><br>
+                                        <label class="form-label">Mot de passe:</label><br>
+                                        <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                            maxlength="10" minlength="10" required><br><br>
+                                        <button type="submit" class="btn-login w-100 rounded-pill"><a href="index.html"
+                                                class="text-decoration-none text-white">S'inscrire</a></button><br><br>
+
+                                        <p class="p">Avez-vous déjà un compte ? <a href="#" class="text-success"
+                                                id="loginBtn">Se
+                                                connecter</a></p>
+                                    </form>
+                                    <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%"
+                                        onclick="document.getElementById('loginModal').style.display='none'"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="login1Modal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat:no-repeat; background-size: cover;">
+                            <h4 class=" h2 fw-bold">Créez votre compte</h4>
+                            <form>
+                                <label class="form-label">Nom:</label><br>
+                                <input type="text" name="lastname" required><br>
+                                <label class="form-label">Prénom:</label><br>
+                                <input type="text" name="name" required><br>
+                                <label class="form-label">Email ou Téléphone:</label><br><br>
+                                <input type="text" name="email" placeholder="adounkpemike@gmail.com" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                    maxlength="10" minlength="10" required><br><br>
+                                <button type="submit"
+                                    class="btn-login w-100 mt-2 rounded-pill">S'inscrire</button><br><br>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%;"
+                                onclick="document.getElementById('login1Modal').style.display='none'"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    
+    <!-- Contenu principal du compte -->
+    <div class="account-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="account-card">
+                        <!-- En-tête du profil -->
+                        <div class="profile-header">
+                            <img src="Black Pattern Minimalist LinkedIn Profile Picture.png" alt="Photo de profil" class="profile-avatar">
+                            <h2 class="mb-2">User</h2>
+                            <p class="mb-0 opacity-75">Client</p>
+                            
+                            <div class="profile-stats">
+                                <div class="stat-item">
+                                    <span class="stat-number text-dark">24</span>
+                                    <span class="stat-label">Commandes</span>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-number text-dark">4.9</span>
+                                    <span class="stat-label">Note</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Navigation par onglets -->
+                        <ul class="nav nav-tabs" id="accountTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab">
+                                    <i class="bx bx-home me-2"></i>Vue d'ensemble
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="orders-tab" data-bs-toggle="tab" data-bs-target="#orders" type="button" role="tab">
+                                    <i class="bx bx-package me-2"></i>Mes commandes
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="notifications-tab" data-bs-toggle="tab" data-bs-target="#notifications" type="button" role="tab">
+                                    <i class="bx bx-bell me-2"></i>Notifications
+                                </button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="settings-tab" data-bs-toggle="tab" data-bs-target="#settings" type="button" role="tab">
+                                    <i class="bx bx-cog me-2"></i>Paramètres
+                                </button>
+                            </li>
+                        </ul>
+                        
+                        <!-- Contenu des onglets -->
+                        <div class="tab-content" id="accountTabsContent">
+                            <!-- Onglet Vue d'ensemble -->
+                            <div class="tab-pane fade show active" id="overview" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <!-- Actions rapides -->
+                                        <div class="quick-actions">
+                                            <a href="cartshop.html" class="quick-action-btn">
+                                                <i class="bx bxs-cart"></i>
+                                                <span>Mon Panier</span>
+                                            </a>
+                                            <a href="discoverides.html" class="quick-action-btn">
+                                                <i class="bx bx-compass"></i>
+                                                <span>Découvrir</span>
+                                            </a>
+                                            <a href="#" class="quick-action-btn">
+                                                <i class="bx bx-heart"></i>
+                                                <span>Favoris</span>
+                                            </a>
+                                        </div>
+                                        
+                                        <!-- Programme de fidélité -->
+                                        <div class="loyalty-card">
+                                            <div class="row align-items-center">
+                                                <div class="col-md-8">
+                                                    <h4 class="mb-3">Programme de fidélité BetaStore</h4>
+                                                    <div class="loyalty-points">1,250 points</div>
+                                                    <p class="mb-0">Plus que 250 points pour le niveau Gold !</p>
+                                                </div>
+                                                <div class="col-md-4 text-center">
+                                                    <svg class="progress-ring" width="80" height="80">
+                                                        <circle class="bg" cx="40" cy="40" r="36"></circle>
+                                                        <circle class="progress" cx="40" cy="40" r="36"></circle>
+                                                    </svg>
+                                                    <p class="mt-2 mb-0">50% complété</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Réalisations -->
+                                        <div class="settings-section">
+                                            <h5 class="mb-3">Mes Réalisations</h5>
+                                            <div class="achievement-badge silver">
+                                                <i class="bx bx-star me-1"></i>Client Fidèle
+                                            </div>
+                                            <div class="achievement-badge bronze">
+                                                <i class="bx bx-gift me-1"></i>Parrainage
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-lg-4">
+                                        <!-- Statistiques récentes -->
+                                        <div class="settings-section">
+                                            <h5 class="mb-3">Activité récente</h5>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Commandes ce mois</span>
+                                                <span class="fw-bold">3</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Total dépensé</span>
+                                                <span class="fw-bold">Indefined</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <span>Produits favoris</span>
+                                                <span class="fw-bold">Aucun</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span>Note moyenne</span>
+                                                <span class="fw-bold">4.9/5</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- Prochaine livraison -->
+                                        <div class="order-card p-3">
+                                            <h6 class="mb-3">Prochaine livraison</h6>
+                                            <div class="d-flex align-items-center mb-2">
+                                                <img src="IMG-20250616-WA0024.jpg" alt="Produit" style="width: 40px; height: 40px; object-fit: cover; border-radius: 8px;" class="me-3">
+                                                <div>
+                                                    <strong>Miroirs de table</strong>
+                                                    <div class="text-muted small">Commande #BS-2025-001</div>
+                                                </div>
+                                            </div>
+                                            <div class="order-status status-shipped">Expédié</div>
+                                            <small class="text-muted">Aucune livraison pour le moment</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Onglet Mes commandes -->
+                            <div class="tab-pane fade" id="orders" role="tabpanel">
+                                <h4 class="mb-4">Historique des commandes</h4>
+                                
+                                <!-- Commande 1 -->
+                                <div class="order-card p-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-2 col-3">
+                                            <img src="IMG-20250616-WA0014.jpg" alt="Smartphone" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                        </div>
+                                        <div class="col-md-4 col-6">
+                                            <h6 class="mb-1">Termos 24h chrono de 2000ml</h6>
+                                            <small class="text-muted">Commande #BS-2025-001</small>
+                                            <div class="mt-2">
+                                                <span class="order-status status-delivered">Livré</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <strong>Indefined</strong>
+                                                <div class="text-muted small">Unknow</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <button class="btn btn-outline-primary btn-sm">
+                                                    <i class="bx bx-download me-1"></i>Facture
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <button class="btn btn-outline-success btn-sm">
+                                                    <i class="bx bx-refresh me-1"></i>Commander à nouveau
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Commande 2 -->
+                                <div class="order-card p-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-2 col-3">
+                                            <img src="IMG-20250616-WA0024.jpg" alt="Casque" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                        </div>
+                                        <div class="col-md-4 col-6">
+                                            <h6 class="mb-1">Miroirs de table</h6>
+                                            <small class="text-muted">Commande #BS-2025-002</small>
+                                            <div class="mt-2">
+                                                <span class="order-status status-shipped">Expédié</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <strong>Indefined</strong>
+                                                <div class="text-muted small">Unknow</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <button class="btn btn-outline-primary btn-sm">
+                                                    <i class="bx bx-download me-1"></i>Facture
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <button class="btn btn-outline-info btn-sm">
+                                                    <i class="bx bx-truck me-1"></i>Suivre
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Commande 3 -->
+                                <div class="order-card p-3">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-2 col-3">
+                                            <img src="1727509793102-802af4c2126c4a6bb0af14ec2e860b87-goods.jpg" alt="Montre" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                                        </div>
+                                        <div class="col-md-4 col-6">
+                                            <h6 class="mb-1">Montre connectée</h6>
+                                            <small class="text-muted">Commande #BS-2025-003</small>
+                                            <div class="mt-2">
+                                                <span class="order-status status-processing">En traitement</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <strong>Indefined</strong>
+                                                <div class="text-muted small">Unknow</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <button class="btn btn-outline-warning btn-sm">
+                                                    <i class="bx bx-time me-1"></i>En attente
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-6">
+                                            <div class="text-center">
+                                                <button class="btn btn-outline-danger btn-sm">
+                                                    <i class="bx bx-x me-1"></i>Annuler la commande
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Onglet Notifications -->
+                            <div class="tab-pane fade" id="notifications" role="tabpanel">
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="mb-0">Notifications</h4>
+                                    <button class="btn btn-outline-primary btn-sm">
+                                        <i class="bx bx-check me-1"></i>Tout marquer comme lu
+                                    </button>
+                                </div>
+                                
+                                <!-- Notification 1 -->
+                                <div class="notification-item">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1">
+                                                <i class="bx bx-package me-2 text-success"></i>
+                                                Commande expédiée
+                                            </h6>
+                                            <p class="mb-1">Votre commande #BS-2025-002 (Casque Bluetooth Sony) a été expédiée et sera livrée le 18 Jan 2025.</p>
+                                            <span class="notification-time">Il y a 2 heures</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="bx bx-x"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Notification 2 -->
+                                <div class="notification-item">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1">
+                                                <i class="bx bx-gift me-2 text-warning"></i>
+                                                Offre spéciale
+                                            </h6>
+                                            <p class="mb-1">-20% sur tous les smartphones Samsung ! Profitez de cette offre limitée jusqu'au 31 Jan 2025.</p>
+                                            <span class="notification-time">Il y a 1 jour</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="bx bx-x"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Notification 3 -->
+                                <div class="notification-item">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1">
+                                                <i class="bx bx-star me-2 text-primary"></i>
+                                                Avis demandé
+                                            </h6>
+                                            <p class="mb-1">Comment avez-vous trouvé votre Smartphone Samsung Galaxy S23 ? Partagez votre expérience !</p>
+                                            <span class="notification-time">Il y a 2 jours</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="bx bx-x"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                
+                                <!-- Notification 4 -->
+                                <div class="notification-item">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <h6 class="mb-1">
+                                                <i class="bx bx-trophy me-2 text-success"></i>
+                                                Niveau atteint !
+                                            </h6>
+                                            <p class="mb-1">Félicitations ! Vous avez atteint le niveau Silver du programme de fidélité BetaStore.</p>
+                                            <span class="notification-time">Il y a 1 semaine</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-secondary">
+                                            <i class="bx bx-x"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Onglet Paramètres -->
+                            <div class="tab-pane fade" id="settings" role="tabpanel">
+                                <h4 class="mb-4">Paramètres du compte</h4>
+                                
+                                <!-- Informations personnelles -->
+                                <div class="settings-section">
+                                    <h5 class="mb-3">Informations personnelles</h5>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Prénom</label>
+                                            <input type="text" class="form-control" value="Adounkpe">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Nom</label>
+                                            <input type="text" class="form-control" value="Mike">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Email</label>
+                                            <input type="email" class="form-control" value="adounkpemike@gmail.com">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Téléphone</label>
+                                            <input type="tel" class="form-control" value="+229 0144303087">
+                                        </div>
+                                        <div class="col-12 mb-3">
+                                            <label class="form-label">Adresse</label>
+                                            <textarea class="form-control" rows="3">Quartier Zobadjè, Calavi</textarea>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary">
+                                        <i class="bx bx-save me-2"></i>Sauvegarder
+                                    </button>
+                                </div>
+                                
+                                <!-- Préférences de notification -->
+                                <div class="settings-section">
+                                    <h5 class="mb-3">Préférences de notification</h5>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="emailNotif" checked>
+                                        <label class="form-check-label" for="emailNotif">
+                                            Notifications par email
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="smsNotif">
+                                        <label class="form-check-label" for="smsNotif">
+                                            Notifications par SMS
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="pushNotif" checked>
+                                        <label class="form-check-label" for="pushNotif">
+                                            Notifications push
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="marketingNotif">
+                                        <label class="form-check-label" for="marketingNotif">
+                                            Offres et promotions
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Sécurité -->
+                                <div class="settings-section">
+                                    <h5 class="mb-3">Sécurité</h5>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Nouveau mot de passe</label>
+                                            <input type="password" class="form-control" placeholder="Entrez votre nouveau mot de passe">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Confirmer le mot de passe</label>
+                                            <input type="password" class="form-control" placeholder="Confirmez votre mot de passe">
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-warning">
+                                        <i class="bx bx-lock me-2"></i>Changer le mot de passe
+                                    </button>
+                                </div>
+                                
+                                <!-- Préférences de livraison -->
+                                <div class="settings-section">
+                                    <h5 class="mb-3">Préférences de livraison</h5>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="expressDelivery" checked>
+                                        <label class="form-check-label" for="expressDelivery">
+                                            Livraison express (24-48h)
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="ecoDelivery">
+                                        <label class="form-check-label" for="ecoDelivery">
+                                            Livraison éco-responsable
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="pickupPoint">
+                                        <label class="form-check-label" for="pickupPoint">
+                                            Points relais préférés
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <!-- Actions dangereuses -->
+                                <div class="settings-section border-danger">
+                                    <h5 class="mb-3 text-danger">Actions dangereuses</h5>
+                                    <div class="d-flex gap-2">
+                                        <button class="btn btn-outline-danger">
+                                            <i class="bx bx-download me-2"></i>Exporter mes données
+                                        </button>
+                                        <button class="btn btn-outline-danger">
+                                            <i class="bx bx-trash me-2"></i>Supprimer mon compte
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Footer moderne -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3 text-white">BetaStore</h5>
+                    <p class="text-light opacity-75">Votre boutique en ligne de confiance pour tous vos besoins
+                        quotidiens.</p>
+                </div>
+
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3 text-white">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Accueil</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">A propos</a>
+                        </li>
+                        <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Contactez-nous</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-white"><i class="bx bx-envelope me-2"></i>contact@betastore.bj</li>
+                        <li class="mb-2 text-white"><i class="bx bx-phone me-2"></i>+229 XX XX XX XX</li>
+                        <li class="mb-2 text-white"><i class="bx bx-map me-2"></i>Calavi, Quartier Zobadjè</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Nos réseaux</h6>
+                    <div class="d-flex gap-2 net">
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-facebook" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-instagram" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-twitter" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-whatsapp" id="mo"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4 text-white">
+            <div class="text-center">
+                <p class="mb-0 text-white">&copy; 2025 BetaStore. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Bouton retour en haut -->
+    <a href="#" id="return">
+        <button class="btn">
+            <i class="bx bx-chevron-up" id="flèche"></i>
+        </button>
+    </a>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Script spécifique pour la page compte
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation de la barre de progression
+            const progressCircle = document.querySelector('.progress');
+            if (progressCircle) {
+                setTimeout(() => {
+                    progressCircle.style.strokeDashoffset = '125.6'; // 50% de 251.2
+                }, 1000);
+            }
+            
+            // Gestion des notifications
+            const notificationItems = document.querySelectorAll('.notification-item');
+            notificationItems.forEach(item => {
+                const closeBtn = item.querySelector('.btn-outline-secondary');
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', function() {
+                        item.style.opacity = '0';
+                        setTimeout(() => {
+                            item.remove();
+                        }, 300);
+                    });
+                }
+            });
+            
+            // Gestion des paramètres
+            const saveBtn = document.querySelector('.btn-primary');
+            if (saveBtn) {
+                saveBtn.addEventListener('click', function() {
+                    this.innerHTML = '<i class="bx bx-check me-2"></i>Sauvegardé !';
+                    this.classList.remove('btn-primary');
+                    this.classList.add('btn-success');
+                    
+                    setTimeout(() => {
+                        this.innerHTML = '<i class="bx bx-save me-2"></i>Sauvegarder';
+                        this.classList.remove('btn-success');
+                        this.classList.add('btn-primary');
+                    }, 2000);
+                });
+            }
+            
+            // Simulation de mise à jour des statistiques
+            const statNumbers = document.querySelectorAll('.stat-number');
+            statNumbers.forEach(stat => {
+                const finalValue = stat.textContent;
+                const startValue = 0;
+                const increment = parseInt(finalValue) / 50;
+                let currentValue = startValue;
+                
+                const updateStat = () => {
+                    if (currentValue < parseInt(finalValue)) {
+                        currentValue += increment;
+                        stat.textContent = Math.ceil(currentValue);
+                        requestAnimationFrame(updateStat);
+                    } else {
+                        stat.textContent = finalValue;
+                    }
+                };
+                
+                setTimeout(updateStat, 500);
+            });
+            
+            // Gestion des actions rapides
+            const quickActionBtns = document.querySelectorAll('.quick-action-btn');
+            quickActionBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    if (this.getAttribute('href') === '#') {
+                        e.preventDefault();
+                        // Animation de clic
+                        this.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            this.style.transform = '';
+                        }, 150);
+                    }
+                });
+            });
+            
+            // Gestion des badges de réalisation
+            const achievementBadges = document.querySelectorAll('.achievement-badge');
+            achievementBadges.forEach(badge => {
+                badge.addEventListener('click', function() {
+                    // Animation de clic
+                    this.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

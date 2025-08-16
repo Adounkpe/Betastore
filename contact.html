@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - BetaStore</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .contact-container {
+            margin-top: 120px;
+            background: linear-gradient(135deg, #4667fa 0%, #130f16 100%);
+            padding: 3rem 0;
+            min-height: calc(100vh - 120px);
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .contact-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .contact-form {
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+        }
+        
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+        
+        .invalid-feedback {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .newsletter-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+        }
+        
+        .newsletter-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .contact-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            color: white;
+        }
+        
+        .map-container {
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-top: 2rem;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .contact-container {
+                margin-top: 100px;
+                padding: 1rem 0;
+            }
+            
+            .contact-header {
+                padding: 1.5rem;
+            }
+            
+            .contact-form {
+                padding: 1.5rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header moderne -->
+    <header class="fixed-top pt-2" style="transition: top 0.4s ease; background-image: url(v1016-b-09.jpg);">
+        <div class="container-fluid p-2">
+            <div class="row">
+                <div class="col col-md-9 col-lg-12 d-flex flex-row justify-content-between align-items-center">
+                    <a class="navbar-brand ms-4" href="index.html">
+                        <i class="bx bxs-cart me-2 fs-2"></i>
+                        <span>BetaStore</span>
+                    </a>
+                    <form action="#" class="d-flex align-items-center" id="searchForm" method="submit"
+                        style="width: 25%;">
+                        <input type="text" class="h-25 m-auto" placeholder="Rechercher un produit.." id="search">
+                    </form>
+
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a href="cartshop.html" class="nav-link">
+                                <i class="bx bxs-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="account.html" class="nav-link">
+                                <i class="bx bxs-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg p-2 bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-compass me-1"></i>Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="discoverides.html" class="nav-link fs-6 text-light">
+                                <i class="bx bx-info-circle me-1"></i>Découvrir
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact.html" class="nav-link fs-6 text-light active">
+                                <i class="bx bxs-phone me-1"></i>Contact
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-outline-light text-light" id="loginBtn">
+                            Se connecter
+                        </button>
+                        <button class="btn btn-outline-success" id="registerBtn">
+                            S'inscrire
+                        </button>
+                    </div>
+
+                    <!-- Modals modernisés -->
+                    <div id="signupModal" class="modal justify-content-center">
+                        <div class="modal-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <h4 class="h2 fw-bold">Connectez-vous</h4>
+                            <form>
+                                <label class="form-label">Nom d'utilisateur ou email:</label><br>
+                                <input type="text" name="username" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" maxlength="10" minlength="10" required><br><br>
+                                <button type="submit" class="btn-signup w-100 rounded-pill">Se
+                                    connecter</button><br><br>
+                                <a href="#" class="p">Mot de passe oublié ?</a>
+                                <p class="p">Pas encore de compte ? <a href="#" class="text-success"
+                                        id="register1Btn">Créez-en un</a>
+                                </p>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 5%; bottom: 90%"
+                                onclick="document.getElementById('signupModal').style.display='none'"></button>
+                        </div>
+                    </div>
+
+                    <div id="loginModal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <h4 class="h2 fw-bold">Créez votre compte</h4>
+                                    <form>
+                                        <label class="form-label">Nom:</label><br>
+                                        <input type="text" name="lastname" required><br>
+                                        <label class="form-label">Prénom:</label><br>
+                                        <input type="text" name="name" required><br>
+                                        <label class="form-label">Email ou Téléphone:</label><br><br>
+                                        <input type="text" name="email" placeholder="adounkpemike@gmail.com"
+                                            required><br>
+                                        <label class="form-label">Mot de passe:</label><br>
+                                        <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                            maxlength="10" minlength="10" required><br><br>
+                                        <button type="submit" class="btn-login w-100 rounded-pill"><a href="index.html"
+                                                class="text-decoration-none text-white">S'inscrire</a></button><br><br>
+
+                                        <p class="p">Avez-vous déjà un compte ? <a href="#" class="text-success"
+                                                id="loginBtn">Se
+                                                connecter</a></p>
+                                    </form>
+                                    <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%"
+                                        onclick="document.getElementById('loginModal').style.display='none'"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="login1Modal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat:no-repeat; background-size: cover;">
+                            <h4 class=" h2 fw-bold">Créez votre compte</h4>
+                            <form>
+                                <label class="form-label">Nom:</label><br>
+                                <input type="text" name="lastname" required><br>
+                                <label class="form-label">Prénom:</label><br>
+                                <input type="text" name="name" required><br>
+                                <label class="form-label">Email ou Téléphone:</label><br><br>
+                                <input type="text" name="email" placeholder="adounkpemike@gmail.com" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                    maxlength="10" minlength="10" required><br><br>
+                                <button type="submit"
+                                    class="btn-login w-100 mt-2 rounded-pill">S'inscrire</button><br><br>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%;"
+                                onclick="document.getElementById('login1Modal').style.display='none'"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal de contact -->
+    <div class="contact-container">
+        <div class="container">
+            <div class="row">
+                <!-- Formulaire de contact -->
+                <div class="col-lg-8">
+                    <div class="contact-card bg-dark text-light">
+                        <div class="contact-header">
+                            <h1 class="mb-0">
+                                <i class="bx bxs-phone me-2" style="font-size: 2.5rem;"></i>
+                                Contactez-nous
+                            </h1>
+                            <p class="mb-0 mt-2">Nous sommes là pour vous aider et répondre à toutes vos questions</p>
+                        </div>
+                        
+                        <div class="contact-form">
+                            <!-- Messages de succès/erreur -->
+                            <div id="successMessage" class="success-message">
+                                <i class="bx bx-check-circle me-2"></i>
+                                Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+                            </div>
+                            
+                            <div id="errorMessage" class="error-message">
+                                <i class="bx bx-error-circle me-2"></i>
+                                Une erreur s'est produite. Veuillez réessayer.
+                            </div>
+                            
+                            <form id="contactForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="firstName" class="form-label text-light">Prénom *</label>
+                                            <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                            <div class="invalid-feedback">Veuillez saisir votre prénom.</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="lastName" class="form-label text-light">Nom *</label>
+                                            <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                            <div class="invalid-feedback">Veuillez saisir votre nom.</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="email" class="form-label text-light">Email *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">Veuillez saisir une adresse email valide.</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone" class="form-label text-light">Téléphone</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject" class="form-label text-light">Sujet *</label>
+                                    <select class="form-control" id="subject" name="subject" required>
+                                        <option value="">Choisissez un sujet</option>
+                                        <option value="commande">Question sur une commande</option>
+                                        <option value="produit">Information sur un produit</option>
+                                        <option value="livraison">Livraison et retours</option>
+                                        <option value="reclamation">Réclamation</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                    <div class="invalid-feedback">Veuillez sélectionner un sujet.</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message" class="form-label text-light">Message *</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required 
+                                              placeholder="Décrivez votre demande en détail..."></textarea>
+                                    <div class="invalid-feedback">Veuillez saisir votre message.</div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                                        <label class="form-check-label" for="newsletter">
+                                            Je souhaite recevoir la newsletter BetaStore
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn" id="submitBtn">
+                                    <i class="bx bx-send me-2"></i>
+                                    Envoyer le message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informations de contact -->
+                <div class="col-lg-4">
+                    <div class="newsletter-card">
+                        <h3 class="mb-3">
+                            <i class="bx bx-newsletter me-2"></i>
+                            Newsletter
+                        </h3>
+                        <p>Restez informé de nos dernières offres, nouveaux produits et promotions exclusives !</p>
+                        
+                        <form id="newsletterForm" class="newsletter-form">
+                            <input type="email" class="newsletter-input" id="newsletterEmail" 
+                                   placeholder="Votre adresse email" required>
+                            <button type="submit" class="newsletter-btn">
+                                <i class="bx bx-right-arrow-alt"></i>
+                            </button>
+                        </form>
+                        
+                        <div id="newsletterSuccess" class="success-message mt-2" style="display: none;">
+                            <i class="bx bx-check-circle me-2"></i>
+                            Inscription réussie ! Vous recevrez bientôt nos newsletters.
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info">
+                        <h4 class="mb-3">
+                            <i class="bx bx-map me-2"></i>
+                            Nos coordonnées
+                        </h4>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="bx bx-map"></i>
+                            </div>
+                            <div>
+                                <strong>Adresse</strong><br>
+                                Calavi, Quartier Zobadjè<br>
+                                Bénin
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="bx bx-phone"></i>
+                            </div>
+                            <div>
+                                <strong>Téléphone</strong><br>
+                                +229 XX XX XX XX XX <br>
+                                <strong>Moblie money</strong><br>
+                                +229 XX XX XX XX XX
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="bx bx-envelope"></i>
+                            </div>
+                            <div>
+                                <strong>Email</strong><br>
+                                contact@betastore.bj
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="bx bx-time"></i>
+                            </div>
+                            <div>
+                                <strong>Horaires</strong><br>
+                                Ouvert : Lun-Sam: 8h-19h<br>
+                                         Dim: 10h-18h
+                            </div>
+                        </div>
+                        
+                        <h5 class="mt-4 mb-3">Suivez-nous</h5>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i class="bx bxl-facebook"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="bx bxl-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="bx bxl-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i class="bx bxl-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.5!2d2.35!3d6.45!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjcnMDAuMCJOIDLCsDIxJzAwLjAiRQ!5e0!3m2!1sfr!2sbj!4v1234567890" 
+                                allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer moderne -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3 text-white">BetaStore</h5>
+                    <p class="text-light opacity-75">Votre boutique en ligne de confiance pour tous vos besoins
+                        quotidiens.</p>
+                </div>
+
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3 text-white">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Accueil</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">A propos</a>
+                        </li>
+                        <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Contactez-nous</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-white"><i class="bx bx-envelope me-2"></i>contact@betastore.bj</li>
+                        <li class="mb-2 text-white"><i class="bx bx-phone me-2"></i>+229 XX XX XX XX</li>
+                        <li class="mb-2 text-white"><i class="bx bx-map me-2"></i>Calavi, Quartier Zobadjè</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Nos réseaux</h6>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-facebook" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-instagram" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-twitter" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-whatsapp" id="mo"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 text-white">
+            <div class="text-center">
+                <p class="mb-0 text-white">&copy; 2025 BetaStore. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <a href="#" id="return">
+        <button class="btn">
+            <i class="bx bx-chevron-up" id="flèche" style="display: flex; justify-content: center;"></i>
+        </button>
+    </a>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Gestion du formulaire de contact
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            const newsletterForm = document.getElementById('newsletterForm');
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Validation et soumission du formulaire de contact
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateContactForm()) {
+                    submitContactForm();
+                }
+            });
+            
+            // Validation et soumission du formulaire newsletter
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (validateNewsletterForm()) {
+                    submitNewsletterForm();
+                }
+            });
+            
+            // Validation du formulaire de contact
+            function validateContactForm() {
+                let isValid = true;
+                const fields = ['firstName', 'lastName', 'email', 'subject', 'message'];
+                
+                // Réinitialiser les erreurs
+                fields.forEach(field => {
+                    const element = document.getElementById(field);
+                    element.classList.remove('is-invalid');
+                });
+                
+                // Valider chaque champ
+                fields.forEach(field => {
+                    const element = document.getElementById(field);
+                    const value = element.value.trim();
+                    
+                    if (!value) {
+                        element.classList.add('is-invalid');
+                        isValid = false;
+                    } else if (field === 'email' && !isValidEmail(value)) {
+                        element.classList.add('is-invalid');
+                        isValid = false;
+                    }
+                });
+                
+                return isValid;
+            }
+            
+            // Validation du formulaire newsletter
+            function validateNewsletterForm() {
+                const email = document.getElementById('newsletterEmail');
+                const value = email.value.trim();
+                
+                if (!value || !isValidEmail(value)) {
+                    email.classList.add('is-invalid');
+                    return false;
+                }
+                
+                email.classList.remove('is-invalid');
+                return true;
+            }
+            
+            // Validation email
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+            
+            // Soumission du formulaire de contact
+            function submitContactForm() {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin me-2"></i>Envoi en cours...';
+                
+                // Simuler l'envoi (remplacer par votre logique d'envoi)
+                setTimeout(() => {
+                    // Récupérer les données du formulaire
+                    const formData = new FormData(contactForm);
+                    const data = Object.fromEntries(formData);
+                    
+                    // Sauvegarder dans le localStorage (pour démonstration)
+                    saveContactData(data);
+                    
+                    // Afficher le message de succès
+                    showMessage('successMessage', true);
+                    showMessage('errorMessage', false);
+                    
+                    // Réinitialiser le formulaire
+                    contactForm.reset();
+                    
+                    // Réactiver le bouton
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="bx bx-send me-2"></i>Envoyer le message';
+                    
+                    // Masquer le message après 5 secondes
+                    setTimeout(() => {
+                        showMessage('successMessage', false);
+                    }, 5000);
+                    
+                }, 2000);
+            }
+            
+            // Soumission du formulaire newsletter
+            function submitNewsletterForm() {
+                const email = document.getElementById('newsletterEmail');
+                const value = email.value.trim();
+                
+                // Sauvegarder l'email (pour démonstration)
+                saveNewsletterEmail(value);
+                
+                // Afficher le message de succès
+                document.getElementById('newsletterSuccess').style.display = 'block';
+                
+                // Réinitialiser le formulaire
+                newsletterForm.reset();
+                
+                // Masquer le message après 5 secondes
+                setTimeout(() => {
+                    document.getElementById('newsletterSuccess').style.display = 'none';
+                }, 5000);
+            }
+            
+            // Sauvegarder les données de contact
+            function saveContactData(data) {
+                const contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+                contacts.push({
+                    ...data,
+                    date: new Date().toISOString(),
+                    id: Date.now()
+                });
+                localStorage.setItem('contacts', JSON.stringify(contacts));
+            }
+            
+            // Sauvegarder l'email newsletter
+            function saveNewsletterEmail(email) {
+                const newsletter = JSON.parse(localStorage.getItem('newsletter') || '[]');
+                if (!newsletter.includes(email)) {
+                    newsletter.push({
+                        email: email,
+                        date: new Date().toISOString()
+                    });
+                    localStorage.setItem('newsletter', JSON.stringify(newsletter));
+                }
+            }
+            
+            // Afficher/masquer les messages
+            function showMessage(elementId, show) {
+                const element = document.getElementById(elementId);
+                element.style.display = show ? 'block' : 'none';
+            }
+            
+            // Validation en temps réel
+            const inputs = contactForm.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    validateField(this);
+                });
+                
+                input.addEventListener('input', function() {
+                    if (this.classList.contains('is-invalid')) {
+                        validateField(this);
+                    }
+                });
+            });
+            
+            function validateField(field) {
+                const value = field.value.trim();
+                const fieldName = field.name;
+                
+                if (!value && field.hasAttribute('required')) {
+                    field.classList.add('is-invalid');
+                } else if (fieldName === 'email' && value && !isValidEmail(value)) {
+                    field.classList.add('is-invalid');
+                } else {
+                    field.classList.remove('is-invalid');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

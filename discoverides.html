@@ -1,0 +1,1345 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Découvrez notre vaste catalogue de produits de qualité. Filtrez par catégorie et trouvez l'article parfait pour vos besoins.">
+    <title>Découvrir nos produits - BetaStore</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Header moderne -->
+    <header class="fixed-top pt-2" style="transition: top 0.4s ease; background-image: url(v1016-b-09.jpg);">
+        <div class="container-fluid p-2">
+            <div class="row">
+                <div class="col col-md-9 col-lg-12 d-flex flex-row justify-content-between align-items-center">
+                    <a class="navbar-brand ms-4" href="index.html">
+                        <i class="bx bxs-cart me-2 fs-2"></i>
+                        <span>BetaStore</span>
+                    </a>
+                    <form action="#" class="d-flex align-items-center" id="searchForm" method="submit"
+                        style="width: 25%;">
+                        <input type="text" class="h-25 m-auto" placeholder="Rechercher un produit.." id="search">
+                    </form>
+
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a href="cartshop.html" class="nav-link">
+                                <i class="bx bxs-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="account.html" class="nav-link">
+                                <i class="bx bxs-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg p-2 bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-compass me-1"></i>Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about.html" class="nav-link fs-6 text-light">
+                                <i class="bx bx-info-circle me-1"></i>À propos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-phone me-1"></i>Contact
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-outline-light text-light" id="loginBtn">
+                            Se connecter
+                        </button>
+                        <button class="btn btn-outline-success" id="registerBtn">
+                            S'inscrire
+                        </button>
+                    </div>
+
+                    <!-- Modals modernisés -->
+                    <div id="signupModal" class="modal justify-content-center">
+                        <div class="modal-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <h4 class="h2 fw-bold">Connectez-vous</h4>
+                            <form>
+                                <label class="form-label">Nom d'utilisateur ou email:</label><br>
+                                <input type="text" name="username" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" maxlength="10" minlength="10" required><br><br>
+                                <button type="submit" class="btn-signup w-100 rounded-pill">Se
+                                    connecter</button><br><br>
+                                <a href="#" class="p">Mot de passe oublié ?</a>
+                                <p class="p">Pas encore de compte ? <a href="#" class="text-success"
+                                        id="register1Btn">Créez-en un</a>
+                                </p>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 5%; bottom: 90%"
+                                onclick="document.getElementById('signupModal').style.display='none'"></button>
+                        </div>
+                    </div>
+
+                    <div id="loginModal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <h4 class="h2 fw-bold">Créez votre compte</h4>
+                                    <form>
+                                        <label class="form-label">Nom:</label><br>
+                                        <input type="text" name="lastname" required><br>
+                                        <label class="form-label">Prénom:</label><br>
+                                        <input type="text" name="name" required><br>
+                                        <label class="form-label">Email ou Téléphone:</label><br><br>
+                                        <input type="text" name="email" placeholder="adounkpemike@gmail.com"
+                                            required><br>
+                                        <label class="form-label">Mot de passe:</label><br>
+                                        <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                            maxlength="10" minlength="10" required><br><br>
+                                        <button type="submit" class="btn-login w-100 rounded-pill"><a href="index.html"
+                                                class="text-decoration-none text-white">S'inscrire</a></button><br><br>
+
+                                        <p class="p">Avez-vous déjà un compte ? <a href="#" class="text-success"
+                                                id="loginBtn">Se
+                                                connecter</a></p>
+                                    </form>
+                                    <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%"
+                                        onclick="document.getElementById('loginModal').style.display='none'"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="login1Modal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat:no-repeat; background-size: cover;">
+                            <h4 class=" h2 fw-bold">Créez votre compte</h4>
+                            <form>
+                                <label class="form-label">Nom:</label><br>
+                                <input type="text" name="lastname" required><br>
+                                <label class="form-label">Prénom:</label><br>
+                                <input type="text" name="name" required><br>
+                                <label class="form-label">Email ou Téléphone:</label><br><br>
+                                <input type="text" name="email" placeholder="adounkpemike@gmail.com" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                    maxlength="10" minlength="10" required><br><br>
+                                <button type="submit"
+                                    class="btn-login w-100 mt-2 rounded-pill">S'inscrire</button><br><br>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%;"
+                                onclick="document.getElementById('login1Modal').style.display='none'"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Section Hero moderne -->
+    <section class="hero-section py-5 my-5">
+        <div class="container pt-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-6 pt-5 fw-bold mb-4">Découvrez notre vaste catalogue de produits et divers
+                        disponibles pour vos bésoins</h2>
+                    <p class="lead mb-4">Explorez notre sélection de produits de qualité, organisés par catégories pour
+                        faciliter votre recherche.</p>
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-success btn-lg fs-6" id="viewAllProducts">
+                            <i class="bx bx-grid me-2"></i>Voir tous les produits
+                        </button>
+                        <button class="btn btn-dark btn-lg fs-6" id="popularProducts">
+                            <i class="bx bx-star me-2"></i>Produits populaires
+                        </button>
+                    </div>
+                </div>
+                <div class="col-lg-6 pt-5">
+                    <img src="equipement-randonnee-plein-air_1387-661.jpg" alt="Catalogue produits"
+                        class="img-fluid rounded h-50">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section filtres modernisée -->
+    <section class="filters-section py-4">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold mb-3">Filtrer par catégorie</h3>
+                <p>Trouvez rapidement ce que vous cherchez</p>
+            </div>
+
+            <div class="filters-container col-12">
+                <div class="filters-grid">
+                    <button class="filter-btn active" data-category="all">
+                        <i class="bx bx-grid-alt me-2" style="color: #000;"></i>Tous les produits
+                    </button>
+                    <button class="filter-btn" data-category="electronique">
+                        <i class="bx bx-devices me-2" style="color: #000;"></i>Électronique
+                    </button>
+                    <button class="filter-btn" data-category="menage">
+                        <i class="bx bx-home me-2" style="color: #000;"></i>Électroménager
+                    </button>
+                    <button class="filter-btn" data-category="mode">
+                        <i class="bx bx-user me-2" style="color: #000;"></i>Mode
+                    </button>
+                    <button class="filter-btn" data-category="beaute">
+                        <i class="bx bx-spa me-2" style="color: #000;"></i>Beauté
+                    </button>
+                    <button class="filter-btn" data-category="sport">
+                        <i class="bx bx-run me-2" style="color: #000;"></i>Jeux
+                    </button>
+                    <button class="filter-btn" data-category="cuisine">
+                        <i class="bx bx-restaurant me-2" style="color: #000;"></i>Cuisine
+                    </button>
+                    <button class="filter-btn" data-category="nutrition">
+                        <i class="bx bx-heart me-2" style="color: #000;"></i>Nutrition
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section produits avec grille moderne -->
+    <section class="products-section py-5">
+        <div class="container-fluid">
+            <div class="row g-3" id="productsGrid">
+                <!-- Produit 1 - Électronique -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="electronique">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="1727509793102-802af4c2126c4a6bb0af14ec2e860b87-goods.jpeg" alt="Montre connectée">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="1727509793102-802af4c2126c4a6bb0af14ec2e860b87-goods.jpeg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électronique</span>
+                            <h3 class="product-title">Montre connectée</h3>
+                            <p class="product-description">Dernier modèle à prix abordable, fonctionnel avec une
+                                batterie de longue durée.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 2 - Électronique -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="electronique">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="1728788873020-be114b4e8d534a3b8b7109deba5db232-goods.jpeg"
+                                alt="Airpods personnalisés">
+                            <div class="product-badge">Indefined</div>
+                            <div class="product-overlay">
+                                <a href="1728788873020-be114b4e8d534a3b8b7109deba5db232-goods.jpeg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électronique</span>
+                            <h3 class="product-title">Airpods personnalisés</h3>
+                            <p class="product-description">Modèle d'écouteurs sans fil rechargeables agréables pour le
+                                son.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 3 - Électronique -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="electronique">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0025.jpg" alt="Manette de jeux vidéos">
+                            <div class="product-badge">Indefined</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0025.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électronique</span>
+                            <h3 class="product-title">Manette de jeux vidéos</h3>
+                            <p class="product-description">Manette avec équipements personnalisés et coloris variés.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 4 - Beauté -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="beaute">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0024.jpg" alt="Miroirs de table">
+                            <div class="product-badge">Populaire</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0024.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Beauté</span>
+                            <h3 class="product-title">Miroirs de table</h3>
+                            <p class="product-description">Miroirs élégants pour votre salle de bain ou chambre.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 5 - Cuisine -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="cuisine">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0026.jpg" alt="Plats à manger">
+                            <div class="product-badge">Populaire</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0026.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Cuisine</span>
+                            <h3 class="product-title">Plats à manger</h3>
+                            <p class="product-description">Plats et bols essentiels pour contenir des petits et gros
+                                repas.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 6 - Beauté -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="beaute">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0032.jpg" alt="Kit Soin Visage">
+                            <div class="product-badge">Indefined</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0032.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Beauté</span>
+                            <h3 class="product-title">Kit Soin Visage</h3>
+                            <p class="product-description">Kit complet pour une routine de soin quotidienne, 100%
+                                naturel.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 7 - Sport -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="menage">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0049.jpg" alt="Jeu de ludo">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0049.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Electroménager</span>
+                            <h3 class="product-title">Torche à battérie</h3>
+                            <p class="product-description">Torche rechargeable essentielle pour s'éclairer dans le noir
+                                en cas de coupure dans le ménage.
+                            </p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 8 - Nutrition -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="sport">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0016.jpg" alt="Compléments alimentaires">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0016.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Jeux</span>
+                            <h3 class="product-title">Bricoles de fabrique</h3>
+                            <p class="product-description">Briques en plastiques pour enfants en jeux de fabrique (maison, fondations).</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 9 - Électroménager -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="menage">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0048.jpg" alt="Meuble personnalisable">
+                            <div class="product-badge">Indefined</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0048.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électroménager</span>
+                            <h3 class="product-title">Meuble personnalisable</h3>
+                            <p class="product-description">Ensemble électroménager idéal pour la décoration.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 10 - Cuisine -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="cuisine">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0045.jpg" alt="Moulinexe Sliver crest">
+                            <div class="product-badge">Indefined</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0045.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Cuisine</span>
+                            <h3 class="product-title">Moulinexe Sliver crest</h3>
+                            <p class="product-description">Moulinexe automatique super pratique pour mixer vos fruits.
+                            </p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 11 - Électroménager -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="menage">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0050.jpg" alt="Etagères de rangement">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0050.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électroménager</span>
+                            <h3 class="product-title">Etagères de rangement 5 niveaux</h3>
+                            <p class="product-description">Avec ces étagères, plus de soucis de rangement pour vos
+                                chaussures.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 12 - Beauté -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="beaute">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0044.jpg" alt="Gel de douche éclaircissant">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0044.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Beauté</span>
+                            <h3 class="product-title">Gel de douche éclaircissant</h3>
+                            <p class="product-description">Pour être impeccable avant et après une bonne douche.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 13 - Mode -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="mode">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0024.jpg" alt="Accessoires de mode">
+                            <div class="product-badge">Populaire</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0024.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Mode</span>
+                            <h3 class="product-title">Accessoires de mode</h3>
+                            <p class="product-description">Accessoires élégants pour compléter votre style à long terme.
+                            </p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 14 - Sport -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="sport">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0017.jpg" alt="Équipement sportif">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0017.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Jeux</span>
+                            <h3 class="product-title">Jeux éducatifs et ludiques (Ludo)</h3>
+                            <p class="product-description">Équipements pour vos jeux ludiques préférés.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 15 - Nutrition -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="nutrition">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0027.jpg" alt="Produits nutritionnels">
+                            <div class="product-badge">Populaire</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0027.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Nutrition</span>
+                            <h3 class="product-title">Produits nutritionnels (Ascorbic Acid)</h3>
+                            <p class="product-description">Produits naturels contenant de la vitamine C pour votre
+                                bien-être quotidien .</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 16 - Électronique -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="electronique">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="c016be70-ae4e-4caf-afce-1398d6b967c2.jpg" alt="Smartphone">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="c016be70-ae4e-4caf-afce-1398d6b967c2.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électronique</span>
+                            <h3 class="product-title">Montre multi-fonctionel</h3>
+                            <p class="product-description">Dernier modèle avec accès à internet et fonctionnalités
+                                avancées.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="products-section py-5" style="display: none;" id="viewProducts">
+        <div class="container-fluid">
+            <div class="row g-3" id="productsGrid">
+                <!-- Produit 1 - Électronique -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="electronique">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="1727509793102-802af4c2126c4a6bb0af14ec2e860b87-goods.jpeg" alt="Montre connectée">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="1727509793102-802af4c2126c4a6bb0af14ec2e860b87-goods.jpeg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électronique</span>
+                            <h3 class="product-title">Montre connectée</h3>
+                            <p class="product-description">Dernier modèle à prix abordable, fonctionnel avec une
+                                batterie de longue durée.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 2 - Électronique -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="electronique">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="1728788873020-be114b4e8d534a3b8b7109deba5db232-goods.jpeg"
+                                alt="Airpods personnalisés">
+                            <div class="product-badge">Indefined</div>
+                            <div class="product-overlay">
+                                <a href="1728788873020-be114b4e8d534a3b8b7109deba5db232-goods.jpeg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électronique</span>
+                            <h3 class="product-title">Airpods personnalisés</h3>
+                            <p class="product-description">Modèle d'écouteurs sans fil rechargeables agréables pour le
+                                son.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 3 - Électronique -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="electronique">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0025.jpg" alt="Manette de jeux vidéos">
+                            <div class="product-badge">Indefined</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0025.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Électronique</span>
+                            <h3 class="product-title">Manette de jeux vidéos</h3>
+                            <p class="product-description">Manette avec équipements personnalisés et coloris variés.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 4 - Beauté -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="beaute">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0024.jpg" alt="Miroirs de table">
+                            <div class="product-badge">Populaire</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0024.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Beauté</span>
+                            <h3 class="product-title">Miroirs de table</h3>
+                            <p class="product-description">Miroirs élégants pour votre salle de bain ou chambre.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 5 - Cuisine -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="cuisine">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0026.jpg" alt="Plats à manger">
+                            <div class="product-badge">Populaire</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0026.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Cuisine</span>
+                            <h3 class="product-title">Plats à manger</h3>
+                            <p class="product-description">Plats et bols essentiels pour contenir des petits et gros
+                                repas.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 6 - Beauté -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="beaute">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0032.jpg" alt="Kit Soin Visage">
+                            <div class="product-badge">Indefined</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0032.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Beauté</span>
+                            <h3 class="product-title">Kit Soin Visage</h3>
+                            <p class="product-description">Kit complet pour une routine de soin quotidienne, 100%
+                                naturel.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 7 - Sport -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="menage">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0049.jpg" alt="Jeu de ludo">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0049.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Electroménager</span>
+                            <h3 class="product-title">Torche à battérie</h3>
+                            <p class="product-description">Torche rechargeable essentielle pour s'éclairer dans le noir
+                                en cas de coupure dans le ménage.
+                            </p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Produit 8 - Nutrition -->
+                <div class="col-6 col-md-4 col-lg-3 mb-4" data-category="sport">
+                    <div class="product-card">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0016.jpg" alt="Compléments alimentaires">
+                            <div class="product-badge">Nouveau</div>
+                            <div class="product-overlay">
+                                <a href="IMG-20250616-WA0016.jpg">
+                                    <button class="btn btn-success btn-sm">
+                                        <i class="bx bx-show me-1"></i>
+                                    </button>
+                                </a>
+                                <button class="btn btn-outline-light btn-sm">
+                                    <i class="bx bx-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Jeux</span>
+                            <h3 class="product-title">Bricoles de fabrique</h3>
+                            <p class="product-description">Briques en plastiques pour enfants en jeux de fabrique (maison, fondations).</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart">Ajouter au panier</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Section pagination moderne -->
+    <section class="pagination-section py-4">
+        <div class="container">
+            <div class="d-flex justify-content-center">
+                <nav aria-label="Navigation des produits">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                                <i class="bx bx-chevron-left" style="color: #000;"></i>
+                            </a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#viewProducts">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">
+                                <i class="bx bx-chevron-right" style="color: #000;"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    
+    
+    <!-- Section produits récents modernisée -->
+    <section class="recent-products py-5">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold">Appareils électroniques et accessoires éléctriques</h4>
+            </div>
+
+            <div class="products-carousel-container">
+                <div class="products-carousel" id="productsCarousel">
+                    <!-- Produit 1 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="1727509793102-802af4c2126c4a6bb0af14ec2e860b87-goods.jpeg"
+                                alt="Airpods personnalisés">
+                            <div class="product-badge">Nouveau</div>
+                        </div> 
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Airpods personnalisés</h5>
+                            <p>Dernier modèle à prix abordable, triple caméra et batterie
+                                longue durée.</p>
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span class="">Indefined</span>
+                                <span class="text-muted">En promotion</span>
+                                <button class="add-to-cart ms-3 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 2 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="1728788873020-be114b4e8d534a3b8b7109deba5db232-goods.jpeg" alt="Montre connectée">
+                            <div class="product-badge">Nouveau</div>
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Montre connectée</h5>
+                            <p>Suivi d'activité, monitoring cardiaque et étanche jusqu'à
+                                50m.</p>
+
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <span class="text-muted">Recommandé</span>
+                                <button class="add-to-cart px-4 ms-2"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 3 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0025.jpg" alt="Manettes de jeux vidéos">
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Manettes de jeux vidéos</h5>
+                            <p>Consoles pro branchés avec équipements à l'appui coloris.</p>
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <span class="text-muted">En réservation</span>
+                                <button class="add-to-cart ms-3 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 4 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0023.jpg" alt="Manettes de jeux vidéos">
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Ventilateur électrique</h5>
+                            <p>Un ventilateur rechargeable et transportable capable de vous faire sentir des brises légères.</p>
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <span class="text-muted">En réservation</span>
+                                <button class="add-to-cart ms-3 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boutons de navigation -->
+                <button class="carousel-nav-btn carousel-nav-left" id="prevProducts">
+                    <i class="bx bx-chevron-left"></i>
+                </button>
+                <button class="carousel-nav-btn carousel-nav-right" id="nextProducts">
+                    <i class="bx bx-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
+                <h4 class="fw-bold">Accessoires de beauté et d'entretien corporel</h4>
+            </div>
+            
+            <div class="products-carousel-container">
+                <div class="products-carousel" id="productsCarousel">
+                    <!-- Produit 4 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0024.jpg" alt="Miroirs de table">
+                            <div class="product-badge">Populaire</div>
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Miroirs de table</h5>
+                            <p>Miroirs élégants pour votre salle de bain ou chambre.</p>
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <button class="add-to-cart ms-3 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 8 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0027.jpg" alt="Gel de douche éclaircissant">
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Produits nutritionnels (Ascorbic Acid)</h5>
+                            <p>Compléments naturels pour votre bien-être quotidien.</p>
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <button class="add-to-cart ms-3 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Produit 8 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0044.jpg" alt="Gel de douche éclaircissant">
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Gel de douche éclaircissant</h5>
+                            <p>Pour être impeccable avant et après une bonne douche.</p>
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                                <span><i class="bx bx-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <button class="add-to-cart ms-3 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 
+                <!-- Boutons de navigation -->
+                <button class="carousel-nav-btn carousel-nav-left" id="prevProducts">
+                    <i class="bx bx-chevron-left"></i>
+                </button>
+                <button class="carousel-nav-btn carousel-nav-right" id="nextProducts">
+                    <i class="bx bx-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+
+
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
+                <h4 class="fw-bold">Objets de décoration et immobiliers</h4>
+            </div>
+
+            <div class="products-carousel-container">
+                <div class="products-carousel" id="productsCarousel">
+                    <!-- Produit 5 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0048.jpg" alt="Meuble personnalisable">
+                            <div class="product-badge">Populaire</div>
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Meuble personnalisable</h5>
+                            <p>Ensemble électroménager idéal pour la décoration.</p>
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <button class="add-to-cart ms-3 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 7 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0050.jpg" alt="Etagères de rangement">
+                            <div class="product-badge">Nouveau</div>
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Etagères de rangement</h5>
+                            <p>Avec ces étagères, plus de soucis de rangement pour vos
+                                chaussures ou autres accessoires.</p>
+
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <span class="text-muted">20% réduct</span>
+                                <button class="add-to-cart ms-4 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 7 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0020.jpg" alt="Etagères de rangement">
+                            <div class="product-badge">Nouveau</div>
+                        </div>
+                        <div class="product-info px-2">
+                            <h5 class="fw-bold">Armoires 3 battants, 4 battants</h5>
+                            <p>Avec ces armoires, plus de soucis de rangement pour vos
+                                vêtements ou autres accessoires.</p>
+
+                            <div class="d-flex flex-row">
+                                <span><i class="bx bxs-star" style="color:#000"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                                <span><i class="bx bxs-star" style="color: #000;"></i></span>
+                            </div>
+                            <div class="product-footer">
+                                <span>Indefined</span>
+                                <span class="text-muted">20% réduct</span>
+                                <button class="add-to-cart ms-4 px-4"><i class="bx bx-cart-add"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Boutons de navigation -->
+                <button class="carousel-nav-btn carousel-nav-left" id="prevProducts">
+                    <i class="bx bx-chevron-left"></i>
+                </button>
+                <button class="carousel-nav-btn carousel-nav-right" id="nextProducts">
+                    <i class="bx bx-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    
+    <!-- Footer moderne -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3 text-white">BetaStore</h5>
+                    <p class="text-light opacity-75">Votre boutique en ligne de confiance pour tous vos besoins
+                        quotidiens.</p>
+                </div>
+
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3 text-white">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Accueil</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">A propos</a>
+                        </li>
+                        <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Contactez-nous</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-white"><i class="bx bx-envelope me-2"></i>contact@betastore.bj</li>
+                        <li class="mb-2 text-white"><i class="bx bx-phone me-2"></i>+229 XX XX XX XX</li>
+                        <li class="mb-2 text-white"><i class="bx bx-map me-2"></i>Calavi, Quartier Zobadjè</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Nos réseaux</h6>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-facebook" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-instagram" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-twitter" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-whatsapp" id="mo"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4 text-white">
+            <div class="text-center">
+                <p class="mb-0 text-white">&copy; 2025 BetaStore. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <a href="#" id="return">
+        <button class="btn">
+            <i class="bx bx-chevron-up" id="flèche"></i>
+        </button>
+    </a>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <!-- Le script de filtrage est géré dans script.js -->
+</body>
+
+</html>

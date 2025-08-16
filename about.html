@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Découvrez l'histoire de BetaStore, notre équipe passionnée et nos valeurs. Nous sommes votre boutique en ligne de confiance depuis 2020.">
+    <title>À propos de BetaStore - Notre histoire et nos valeurs</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header moderne -->
+    <header class="fixed-top pt-2" style="transition: top 0.4s ease; background-image: url(v1016-b-09.jpg);">
+        <div class="container-fluid p-2">
+            <div class="row">
+                <div class="col col-md-9 col-lg-12 d-flex flex-row justify-content-between align-items-center">
+                    <a class="navbar-brand ms-4" href="index.html">
+                        <i class="bx bxs-cart me-2 fs-2"></i>
+                        <span>BetaStore</span>
+                    </a>
+                    <form action="#" class="d-flex align-items-center" id="searchForm" method="submit"
+                        style="width: 25%;">
+                        <input type="text" class="h-25 m-auto" placeholder="Rechercher un produit.." id="search">
+                    </form>
+
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a href="cartshop.html" class="nav-link">
+                                <i class="bx bxs-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="account.html" class="nav-link">
+                                <i class="bx bxs-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg p-2 bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-compass me-1"></i>Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="discoverides.html" class="nav-link fs-6 text-light">
+                                <i class="bx bx-info-circle me-1"></i>Découvrir
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-phone me-1"></i>Contact
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-outline-light text-light" id="loginBtn">
+                            Se connecter
+                        </button>
+                        <button class="btn btn-outline-success" id="registerBtn">
+                            S'inscrire
+                        </button>
+                    </div>
+
+                    <!-- Modals modernisés -->
+                    <div id="signupModal" class="modal justify-content-center">
+                        <div class="modal-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <h4 class="h2 fw-bold">Connectez-vous</h4>
+                            <form>
+                                <label class="form-label">Nom d'utilisateur ou email:</label><br>
+                                <input type="text" name="username" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" maxlength="10" minlength="10" required><br><br>
+                                <button type="submit" class="btn-signup w-100 rounded-pill">Se
+                                    connecter</button><br><br>
+                                <a href="#" class="p">Mot de passe oublié ?</a>
+                                <p class="p">Pas encore de compte ? <a href="#" class="text-success"
+                                        id="register1Btn">Créez-en un</a>
+                                </p>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 5%; bottom: 90%"
+                                onclick="document.getElementById('signupModal').style.display='none'"></button>
+                        </div>
+                    </div>
+
+                    <div id="loginModal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <h4 class="h2 fw-bold">Créez votre compte</h4>
+                                    <form>
+                                        <label class="form-label">Nom:</label><br>
+                                        <input type="text" name="lastname" required><br>
+                                        <label class="form-label">Prénom:</label><br>
+                                        <input type="text" name="name" required><br>
+                                        <label class="form-label">Email ou Téléphone:</label><br><br>
+                                        <input type="text" name="email" placeholder="adounkpemike@gmail.com"
+                                            required><br>
+                                        <label class="form-label">Mot de passe:</label><br>
+                                        <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                            maxlength="10" minlength="10" required><br><br>
+                                        <button type="submit" class="btn-login w-100 rounded-pill"><a href="index.html"
+                                                class="text-decoration-none text-white">S'inscrire</a></button><br><br>
+
+                                        <p class="p">Avez-vous déjà un compte ? <a href="#" class="text-success"
+                                                id="loginBtn">Se
+                                                connecter</a></p>
+                                    </form>
+                                    <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%"
+                                        onclick="document.getElementById('loginModal').style.display='none'"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="login1Modal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat:no-repeat; background-size: cover;">
+                            <h4 class=" h2 fw-bold">Créez votre compte</h4>
+                            <form>
+                                <label class="form-label">Nom:</label><br>
+                                <input type="text" name="lastname" required><br>
+                                <label class="form-label">Prénom:</label><br>
+                                <input type="text" name="name" required><br>
+                                <label class="form-label">Email ou Téléphone:</label><br><br>
+                                <input type="text" name="email" placeholder="adounkpemike@gmail.com" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                    maxlength="10" minlength="10" required><br><br>
+                                <button type="submit"
+                                    class="btn-login w-100 mt-2 rounded-pill">S'inscrire</button><br><br>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%;"
+                                onclick="document.getElementById('login1Modal').style.display='none'"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Section Hero À propos -->
+    <section class="about-hero py-5 mt-5">
+        <div class="container pt-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-hero-content">
+                        <h2 class="display-6 pt-5 fw-bold mb-4">Votre boutique en ligne très fiable</h2>
+                        <p class="lead mb-4">BetaStore est née d'une vision simple : rendre le shopping en ligne accessible, fiable et agréable pour tous. Nous nous engageons à vous offrir une expérience d'achat exceptionnelle avec des produits de qualité et un service client irréprochable.</p>
+                        <div class="d-flex gap-4">
+                            <a href="#notre-histoire" class="btn btn-light btn-lg fs-6">
+                                <i class="bx bx-book-open me-2 text-dark"></i>Nos sources
+                            </a>
+                             
+                            <a href="#notre-motivation" class="btn btn-success btn-lg fs-6">
+                                <i class="bx bx-user me-2"></i>Notre motivation
+                            </a>
+                            <a href="#notre-equipe" class="btn btn-dark btn-lg fs-6">
+                                <i class="bx bx-group me-2"></i>Notre équipe
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pt-5">
+                    <div class="about-hero-image">
+                        <img src="nature-morte-livres-contre-technologie_23-2150062913.jpg" alt="BetaStore - Notre équipe" class="img-fluid rounded h-50">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Statistiques -->
+    <section class="stats-section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-6 col-md-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon">
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <h3 class="stat-number" data-target="50000">0</h3>
+                        <p class="stat-label">Clients satisfaits</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon">
+                            <i class="bx bx-package"></i>
+                        </div>
+                        <h3 class="stat-number" data-target="10000">0</h3>
+                        <p class="stat-label">Produits livrés</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon">
+                            <i class="bx bx-star"></i>
+                        </div>
+                        <h3 class="stat-number" data-target="98">0</h3>
+                        <p class="stat-label">% de satisfaction</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-3">
+                    <div class="stat-card text-center">
+                        <div class="stat-icon">
+                            <i class="bx bx-time"></i>
+                        </div>
+                        <h3 class="stat-number" data-target="24h/24h">0</h3>
+                        <p class="stat-label">Heures de livraison</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Notre Histoire -->
+    <section class="story-section py-5" id="notre-histoire">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="story-content">
+                        <h2 class="display-6 fw-bold mb-4">Nos sources</h2>
+                        <p class="lead mb-4">BetaStore est une boutique en ligne prête en main pour permettre à nos clients de pouvoir acheter et recevoir des produits de qualités.
+                            Nos commandes sont structurées dans les marques comme shein, helmès, fendi et nous collectons nos produits-sources sur AlibabaExpress, Temu,
+                            Jumia et autres plateformes de vente.</p>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker">Step 1</div>
+                                <div class="timeline-content">
+                                    <h4>Création de BetaStore</h4>
+                                    <p>Lancement de notre première boutique en ligne avec 50 produits sélectionnés.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker">Step 2</div>
+                                <div class="timeline-content">
+                                    <h4>Expansion rapide</h4>
+                                    <p>Ouverture de notre entrepôt et ajout de 500 nouveaux produits.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker">Step 3</div>
+                                <div class="timeline-content">
+                                    <h4>Innovation technologique</h4>
+                                    <p>Lancement de notre application mobile et système de fidélité.</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker">Step 4</div>
+                                <div class="timeline-content">
+                                    <h4>Leader du marché</h4>
+                                    <p>BetaStore devient une référence avec plus de 1000 produits au compteur.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="story-image">
+                        <img src="gros-plan-homme-shopping-avec-ordinateur-portable.jpg" alt="Notre histoire" class="img-fluid rounded h-50">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Nos Valeurs -->
+    <section class="values-section py-5">
+        <div class="container-fluid">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold mb-3">Nos Valeurs</h2>
+                <p class="lead">Les principes qui guident notre système de livraison et de vente</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bx bx-shield"></i>
+                        </div>
+                        <h4>Confiance</h4>
+                        <p>Nous construisons des relations durables basées sur la transparence et l'honnêteté.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bx bx-diamond"></i>
+                        </div>
+                        <h4>Qualité</h4>
+                        <p>Chaque produit est rigoureusement sélectionné pour répondre à nos standards élevés.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bx bx-heart"></i>
+                        </div>
+                        <h4>Service</h4>
+                        <p>Notre équipe dévouée s'engage à vous offrir une expérience client exceptionnelle.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="bx bx-leaf"></i>
+                        </div>
+                        <h4>Durabilité</h4>
+                        <p>Nous nous engageons pour un avenir plus vert avec des pratiques éco-responsables.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Notre Équipe -->
+    <section class="team-section py-5" id="notre-equipe">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold mb-3">Notre Équipe</h2>
+                <p class="lead">Des passionnés et marketteurs dévoués à votre satisfaction</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="team-card rounded">
+                        <div class="team-image mt-4 m-auto">
+                            <img src="Antique Shop Instagram Profile Picture in Brown Yellow Floral Style .png" alt="Précieux - Fondateur">
+                        </div>
+                        <div class="team-info">
+                            <h4>Précieux VODOUNON</h4>
+                            <span class="team-role">Directeur du projet</span>
+                            <p>Passionné d'e-commerce, Précieux a créé BetaStore avec la vision de démocratiser l'accès aux produits de qualité.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="bx bxl-linkedin"></i></a>
+                                <a href="#"><i class="bx bxl-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="team-card rounded">
+                        <div class="team-image m-auto mt-4">
+                            <img src="Packaging Business Instagram Profile Picture in Bright Red Black Bold Style .png" alt="Line - Directrice Marketing">
+                        </div>
+                        <div class="team-info">
+                            <h4>Friend Line</h4>
+                            <span class="team-role">Directrice et propriétaire du site</span>
+                            <p>Experte en marketing digital, Line développe des stratégies innovantes pour connecter avec nos clients.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="bx bxl-linkedin"></i></a>
+                                <a href="#"><i class="bx bxl-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="team-card rounded">
+                        <div class="team-image m-auto mt-4">
+                            <img src="Black Pattern Minimalist LinkedIn Profile Picture.png" alt="Mike - Directeur Technique">
+                        </div>
+                        <div class="team-info">
+                            <h4>Mike ADOUNKPE</h4>
+                            <span class="team-role">Directeur Technique</span>
+                            <p>Spécialiste en développement web, Mike assure la performance et la sécurité de notre plateforme.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="bx bxl-linkedin"></i></a>
+                                <a href="#"><i class="bx bxl-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Nos Engagements -->
+    <section class="commitments-section py-5" id="notre-motivation">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold mb-3">Nos Engagements</h2>
+                <p class="lead">Nous nous engageons pour vous offrir un système de livraison fiable et de qualité en matière de produit</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4">
+                    <div class="commitment-card">
+                        <div class="commitment-icon">
+                            <i class="bx bx-recycle"></i>
+                        </div>
+                        <h4>Emballages éco-responsables</h4>
+                        <p>100% de nos emballages sont recyclables et nous réduisons nos déchets plastiques.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="commitment-card">
+                        <div class="commitment-icon">
+                            <i class="bx bx-heart"></i>
+                        </div>
+                        <h4>Service client 24/7</h4>
+                        <p>Notre équipe support est disponible 24h/24 et 7j/7 pour vous accompagner.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="commitment-card">
+                        <div class="commitment-icon">
+                            <i class="bx bx-shield"></i>
+                        </div>
+                        <h4>Garantie 2 ans</h4>
+                        <p>Tous nos produits bénéficient d'une garantie de 2 ans pour votre tranquillité.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section CTA -->
+    <section class="about-cta py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-6 fw-bold mb-4">Prêt à nous rejoindre ?</h2>
+                    <p class="lead mb-4">Découvrez notre sélection de produits et rejoignez notre communauté de clients satisfaits.</p>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a href="discoverides.html" class="btn btn-success btn-lg">
+                            <i class="bx bx-compass me-2"></i>Découvrir nos produits
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Footer moderne -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3 text-white">BetaStore</h5>
+                    <p class="text-light opacity-75">Votre boutique en ligne de confiance pour tous vos besoins
+                        quotidiens.</p>
+                </div>
+
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3 text-white">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#comment-ca-marche" class="text-light text-decoration-none">Comment ça
+                                marche</a></li>
+                        <li class="mb-2"><a href="#produits" class="text-light text-decoration-none">Nos produits</a>
+                        </li>
+                        <li class="mb-2"><a href="#avantages" class="text-light text-decoration-none">Avantages</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Contactez-nous</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-white"><i class="bx bx-envelope me-2"></i>contact@betastore.bj</li>
+                        <li class="mb-2 text-white"><i class="bx bx-phone me-2"></i>+229 XX XX XX XX</li>
+                        <li class="mb-2 text-white"><i class="bx bx-map me-2"></i>Calavi, Quartier Zobadjè</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Nos réseaux</h6>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-facebook" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-instagram" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-twitter" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-whatsapp" id="mo"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4 text-white">
+            <div class="text-center">
+                <p class="mb-0 text-white">&copy; 2025 BetaStore. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <a href="#" id="return">
+        <button class="btn">
+            <i class="bx bx-chevron-up" id="flèche"></i>
+        </button>
+    </a>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Script spécifique pour la page about
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation des statistiques
+            const statNumbers = document.querySelectorAll('.stat-number');
+            
+            const animateStats = () => {
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.getAttribute('data-target'));
+                    const increment = target / 100;
+                    let current = 0;
+                    
+                    const updateStat = () => {
+                        if (current < target) {
+                            current += increment;
+                            stat.textContent = Math.ceil(current);
+                            requestAnimationFrame(updateStat);
+                        } else {
+                            stat.textContent = target;
+                        }
+                    };
+                    
+                    updateStat();
+                });
+            };
+            
+            // Observer pour déclencher l'animation au scroll
+            const statsSection = document.querySelector('.stats-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateStats();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            });
+            
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        });
+    </script>
+</body>
+
+</html> 

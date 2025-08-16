@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="BetaStore - Votre boutique en ligne de confiance pour tous vos besoins. Découvrez notre sélection de produits de qualité avec livraison rapide et garantie 2 ans.">
+    <meta name="keywords" content="boutique en ligne, e-commerce, produits, livraison, garantie, BetaStore">
+    <title>BetaStore - Votre boutique en ligne de confiance</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+    <!-- Header moderne avec navigation -->
+    <header class="fixed-top pt-2" style="transition: top 0.4s ease; background-image: url(v1016-b-09.jpg);">
+        <div class="container-fluid p-2">
+            <div class="row">
+                <div class="col col-md-9 col-lg-12 d-flex flex-row justify-content-between align-items-center">
+                    <a class="navbar-brand ms-4" href="index.html">
+                        <i class="bx bxs-cart me-2 fs-2"></i>
+                        <span>BetaStore</span>
+                    </a>
+                    <form action="https://www.google.com" class="d-flex align-items-center" id="searchForm" method="submit"
+                        style="width: 25%;">
+                        <input type="text" class="h-25 m-auto" placeholder="Rechercher sur google..." id="search">
+                    </form>
+
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a href="cartshop.html" class="nav-link">
+                                <i class="bx bxs-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="account.html" class="nav-link">
+                                <i class="bx bxs-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg p-2 bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-compass me-1"></i>Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="about.html" class="nav-link fs-6 text-light">
+                                <i class="bx bx-info-circle me-1"></i>À propos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="discoverides.html" class="nav-link fs-6 text-light">
+                                <i class="bx bx-info-circle me-1"></i>Découvrir
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-phone me-1"></i>Contact
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-outline-light text-light" id="loginBtn">
+                            Se connecter
+                        </button>
+                        <button class="btn btn-outline-success" id="registerBtn">
+                            S'inscrire
+                        </button>
+                    </div>
+
+                    <!-- Modals modernisés -->
+                    <div id="signupModal" class="modal justify-content-center">
+                        <div class="modal-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <h4 class="h2 fw-bold">Connectez-vous</h4>
+                            <form>
+                                <label class="form-label">Nom d'utilisateur ou email:</label><br>
+                                <input type="text" name="username" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" maxlength="10" minlength="10" required><br><br>
+                                <button type="submit" class="btn-signup w-100 rounded-pill">Se
+                                    connecter</button><br><br>
+                                <a href="#" class="p">Mot de passe oublié ?</a>
+                                <p class="p">Pas encore de compte ? <a href="#" class="text-success"
+                                        id="register1Btn">Créez-en un</a>
+                                </p>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 5%; bottom: 90%"
+                                onclick="document.getElementById('signupModal').style.display='none'"></button>
+                        </div>
+                    </div>
+
+                    <div id="loginModal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <h4 class="h2 fw-bold">Créez votre compte</h4>
+                                    <form>
+                                        <label class="form-label">Nom:</label><br>
+                                        <input type="text" name="lastname" required><br>
+                                        <label class="form-label">Prénom:</label><br>
+                                        <input type="text" name="name" required><br>
+                                        <label class="form-label">Email ou Téléphone:</label><br><br>
+                                        <input type="text" name="email" placeholder="adounkpemike@gmail.com"
+                                            required><br>
+                                        <label class="form-label">Mot de passe:</label><br>
+                                        <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                            maxlength="10" minlength="10" required><br><br>
+                                        <button type="submit" class="btn-login w-100 rounded-pill"><a href="index.html"
+                                                class="text-decoration-none text-white">S'inscrire</a></button><br><br>
+
+                                        <p class="p">Avez-vous déjà un compte ? <a href="#" class="text-success"
+                                                id="loginBtn">Se
+                                                connecter</a></p>
+                                    </form>
+                                    <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%"
+                                        onclick="document.getElementById('loginModal').style.display='none'"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="login1Modal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat:no-repeat; background-size: cover;">
+                            <h4 class=" h2 fw-bold">Créez votre compte</h4>
+                            <form>
+                                <label class="form-label">Nom:</label><br>
+                                <input type="text" name="lastname" required><br>
+                                <label class="form-label">Prénom:</label><br>
+                                <input type="text" name="name" required><br>
+                                <label class="form-label">Email ou Téléphone:</label><br><br>
+                                <input type="text" name="email" placeholder="adounkpemike@gmail.com" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                    maxlength="10" minlength="10" required><br><br>
+                                <button type="submit"
+                                    class="btn-login w-100 mt-2 rounded-pill">S'inscrire</button><br><br>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%;"
+                                onclick="document.getElementById('login1Modal').style.display='none'"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section modernisé -->
+    <section class="title-section my-5 fade-in">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="carousel slide" id="diaporama" data-bs-ride="carousel">
+                        <div class="carousel-inner" id="contain">
+                            <div id="defile">
+                                <div class="carousel-item" id="defile-image">
+                                    <img src="appareil-electromenager-rubans-reductions-interieur_252025-682.jpg"
+                                        alt="Promotions saisonnières" class="w-100 d-block rounded">
+                                </div>
+                                <div class="carousel-item" id="defile-image">
+                                    <img src="ordinateur-portable-a-proximite-d-un-smartphone-d-appareils-numeriques-et-d-un-caddie.jpg"
+                                        alt="Produits technologiques" class="w-100 d-block rounded">
+                                </div>
+                                <div class="carousel-item active" id="defile-image">
+                                    <img src="top-view-desk-avec-des-cadeaux-de-vendredi-noir.jpg"
+                                        alt="Offres spéciales" class="w-100 d-block rounded">
+                                </div>
+                                <div class="carousel-item" id="defile-image">
+                                    <img src="etiquettes-de-vendredi-noires-plates-avec-panier.jpg" alt="Panier d'achat"
+                                        class="w-100 d-block rounded">
+                                </div>
+                            </div>
+
+                            <button class="carousel-control-prev" data-bs-target="#diaporama" data-bs-slide="prev"
+                                type="button">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" data-bs-target="#diaporama" data-bs-slide="next"
+                                type="button">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                        </div>
+
+                        <div id="titre">
+                            <h1 class="display-6 fw-bold mb-4">Découvrez l'excellence en ligne</h1>
+                            <p class="lead mb-4">Votre destination de confiance pour des produits de qualité, une
+                                livraison rapide et un service client exceptionnel.</p>
+                            <div class="d-flex gap-3 justify-content-center">
+                                <a href="discoverides.html" class="btn btn-outline-light btn-lg">
+                                    <i class="bx bx-compass me-2"></i>Explorer nos produits
+                                </a>
+                                <a href="#produits" class="btn btn-outline-light btn-lg">
+                                    <i class="bx bx-trending-up me-2"></i>Voir les nouveautés
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section produits avec design moderne -->
+    <section class="product-section py-5 fade-in" id="produits">
+        <div class="container-fluid">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold mb-3">Nos produits vedettes</h2>
+                <p class="lead">Découvrez notre sélection de produits populaires et de qualité</p>
+            </div>
+
+            <div class="row g-3" id="importe">
+                <div class="col-6 col-md-6 col-lg-3">
+                    <div class="card rounded">
+                        <div class="position-relative">
+                            <img src="IMG-20250616-WA0014.jpg" alt="Termos 24h chrono" class="card-img-top">
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <span class="badge bg-danger">populaire</span>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Termos 24h chrono de 2000ml</h5>
+                            <p class="card-text text-muted">Termos ultra-résistants très pratiques pour la rétention
+                                d'eau chaude et pour votre hygiène quotidienne.</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h8 text-success mb-0">Indefined</span>
+                                    <button class="btn btn-primary btn-sm h8 h8">
+                                        <i class="bx bx-cart-add me-1"></i>Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6 col-lg-3">
+                    <div class="card rounded">
+                        <div class="position-relative">
+                            <img src="IMG-20250616-WA0025.jpg" alt="Mini consoles de jeux" class="card-img-top">
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <span class="badge bg-success">Nouveau</span>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Mini consoles de jeux-vidéos</h5>
+                            <p class="card-text text-muted">Équipements électroniques très utiles pour jouer
+                                efficacement aux jeux-vidéos sur PC ou à la télévision.</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h8 text-success mb-0">Indefined</span>
+                                    <button class="btn btn-primary btn-sm h8">
+                                        <i class="bx bx-cart-add me-1"></i>Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6 col-lg-3">
+                    <div class="card rounded">
+                        <img src="IMG-20250616-WA0048.jpg" alt="Meuble personnalisable" class="card-img-top">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Meuble personnalisable</h5>
+                            <p class="card-text text-muted">Ensemble électroménager idéal pour la décoration et pour
+                                poser vos objets de conviction.</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h8 text-success mb-0">Indefined</span>
+                                    <button class="btn btn-primary btn-sm h8">
+                                        <i class="bx bx-cart-add me-1"></i>Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6 col-lg-3">
+                    <div class="card rounded">
+                        <img src="IMG-20250616-WA0045.jpg" alt="Moulinexe Sliver crest" class="card-img-top">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Moulinexe Sliver crest de 5500w</h5>
+                            <p class="card-text text-muted">Moulinexe automatique super pratique pour écraser ou mixer
+                                vos fruits et légumes.</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h8 text-success mb-0">Indefined</span>
+                                    <button class="btn btn-primary btn-sm h8">
+                                        <i class="bx bx-cart-add me-1"></i>Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6 col-lg-3">
+                    <div class="card rounded">
+                        <div class="position-relative">
+                            <img src="c016be70-ae4e-4caf-afce-1398d6b967c2.jpg" alt="Termos 24h chrono" class="card-img-top">
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <span class="badge bg-danger">nouveau</span>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Montre multi-fonctionel</h5>
+                            <p class="card-text text-muted">Montre connectée à Internet avec des muliples fonctions (pression cardiaque, connexion aux réseaux sociaux, prise de photos, etc.)</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h8 text-success mb-0">Indefined</span>
+                                    <button class="btn btn-primary btn-sm h8">
+                                        <i class="bx bx-cart-add me-1"></i>Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6 col-lg-3">
+                    <div class="card rounded">
+                        <div class="position-relative">
+                            <img src="IMG-20250616-WA0033.jpg" alt="Mini consoles de jeux" class="card-img-top">
+                            <div class="position-absolute top-0 end-0 m-2">
+                                <span class="badge bg-success">Nouveau</span>
+                            </div>
+                        </div>
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Natte moulante</h5>
+                            <p class="card-text text-muted">Natte moulante de couleurs vives essentielle pour se détendre ou pour faire du yoga.</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h8 text-success mb-0">Indefined</span>
+                                    <button class="btn btn-primary btn-sm h8">
+                                        <i class="bx bx-cart-add me-1"></i>Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6 col-lg-3">
+                    <div class="card rounded">
+                        <img src="IMG-20250616-WA0047.jpg" alt="Meuble personnalisable" class="card-img-top">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Blender 6 en 1</h5>
+                            <p class="card-text text-muted">Moulinexe Blender 6 en 1 capable de mixer et de flitrer les fruits et légumes. Utile pour des multitâches (fabrication de jus de fruits)</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h8 text-success mb-0">Indefined</span>
+                                    <button class="btn btn-primary btn-sm h8">
+                                        <i class="bx bx-cart-add me-1"></i>Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-6 col-lg-3">
+                    <div class="card rounded">
+                        <img src="IMG-20250616-WA0032.jpg" alt="Moulinexe Sliver crest" class="card-img-top">
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title fw-bold">Slim Tea minceur 14 jours detox</h5>
+                            <p class="card-text text-muted">Meilleur thé pour booster le métabolisme, accélérer la diminution du poids pour une minceur constante.</p>
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="h8 text-success mb-0">Indefined</span>
+                                    <button class="btn btn-primary btn-sm h8">
+                                        <i class="bx bx-cart-add me-1"></i>Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="discoverides.html" class="btn btn-dark btn-lg fs-6">
+                    <i class="bx bx-right-arrow-alt me-2"></i>Voir tous nos produits
+                </a>
+            </div>
+        </div>
+    </section>
+
+    
+    <!--Section des récents produits-->
+    <section class="recent-products py-5">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h4 class="fw-bold">Produits récemment ajoutés</h4>
+                <button class="btn btn-dark btn-sm me-5" id="viewAllProducts">
+                    <i class="bx bx-right-arrow-alt me-1"></i>En savoir plus
+                </button>
+            </div>
+
+            <div class="products-carousel-container">
+                <div class="products-carousel" id="productsCarousel">
+                    <!-- Produit 1 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="1727509793102-802af4c2126c4a6bb0af14ec2e860b87-goods.jpeg"
+                                alt="Airpods personnalisés">
+                            <div class="product-badge">Nouveau</div>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Airpods personnalisés</h4>
+                            <p class="product-description">Dernier modèle à prix abordable, triple caméra et batterie
+                                longue durée.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart ms-5">Voir les similaires</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 2 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="1728788873020-be114b4e8d534a3b8b7109deba5db232-goods.jpeg" alt="Montre connectée">
+                            <div class="product-badge">Nouveau</div>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Montre connectée</h4>
+                            <p class="product-description">Suivi d'activité, monitoring cardiaque et étanche jusqu'à
+                                50m.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart ms-5">Voir les similaires</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 3 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0025.jpg" alt="Manettes de jeux vidéos">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Manettes de jeux vidéos</h4>
+                            <p class="product-description">Consoles pro branchés avec équipements à l'appui coloris.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart ms-5">Voir les similaires</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 4 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0024.jpg" alt="Miroirs de table">
+                            <div class="product-badge">Populaire</div>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Miroirs de table</h4>
+                            <p class="product-description">Miroirs élégants pour votre salle de bain ou chambre.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart ms-5">Voir les similaires</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 5 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0048.jpg" alt="Meuble personnalisable">
+                            <div class="product-badge">Populaire</div>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Meuble personnalisable</h4>
+                            <p class="product-description">Ensemble électroménager idéal pour la décoration.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart ms-5">Voir les similaires</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 6 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0045.jpg" alt="Moulinexe Sliver crest">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Moulinexe Sliver crest</h4>
+                            <p class="product-description">Moulinexe automatique super pratique pour mixer vos fruits.
+                            </p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart ms-5">Voir les similaires</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 7 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0050.jpg" alt="Etagères de rangement">
+                            <div class="product-badge">Nouveau</div>
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Etagères de rangement</h4>
+                            <p class="product-description">Avec ces étagères, plus de soucis de rangement pour vos
+                                chaussures ou autres accessoires.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart ms-5">Voir les similaires</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Produit 8 -->
+                    <div class="product-card rounded" style="background: rgba(143, 143, 143, 0.301);">
+                        <div class="product-image rounded">
+                            <img src="IMG-20250616-WA0044.jpg" alt="Gel de douche éclaircissant">
+                        </div>
+                        <div class="product-info">
+                            <h4 class="product-title">Gel de douche éclaircissant</h4>
+                            <p class="product-description">Pour être impeccable avant et après une bonne douche.</p>
+                            <div class="product-footer">
+                                <span class="product-price">Indefined</span>
+                                <button class="add-to-cart ms-5">Voir les similaires</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Boutons de navigation -->
+                <button class="carousel-nav-btn carousel-nav-left" id="prevProducts">
+                    <i class="bx bx-chevron-left"></i>
+                </button>
+                <button class="carousel-nav-btn carousel-nav-right" id="nextProducts">
+                    <i class="bx bx-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    
+    
+    <!-- Section catégories de produits -->
+    <section class="categories-section py-5 my-5">
+        <div class="container-fluid">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold mb-3">Explorez nos catégories</h2>
+                <p class="lead">Découvrez notre large gamme de produits organisés par catégories</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Catégorie Électronique -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="category-card" data-category="electronique">
+                        <div class="category-image">
+                            <img src="ordinateur-portable-a-proximite-d-un-smartphone-d-appareils-numeriques-et-d-un-caddie.jpg"
+                                alt="Électronique">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <i class="bx bx-devices category-icon"></i>
+                                    <h3 class="category-title">Électronique</h3>
+                                    <p class="category-description">Smartphones, ordinateurs, accessoires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catégorie Sport -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="category-card" data-category="sport">
+                        <div class="category-image">
+                            <img src="IMG-20250616-WA0017.jpg" alt="Sport et Fitness">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <i class="bx bx-run category-icon"></i>
+                                    <h3 class="category-title">Sport & Fitness</h3>
+                                    <p class="category-description">Équipements, vêtements, accessoires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catégorie Jeux Vidéo -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="category-card" data-category="jeux-video">
+                        <div class="category-image">
+                            <img src="IMG-20250616-WA0025.jpg" alt="Jeux Vidéo">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <i class="bx bx-game category-icon"></i>
+                                    <h3 class="category-title">Jeux Vidéo</h3>
+                                    <p class="category-description">Consoles, manettes, jeux</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catégorie Beauté -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="category-card" data-category="beaute">
+                        <div class="category-image">
+                            <img src="IMG-20250616-WA0044.jpg" alt="Beauté et Soins">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <i class="bx bx-spa category-icon"></i>
+                                    <h3 class="category-title">Beauté & Soins</h3>
+                                    <p class="category-description">Cosmétiques, soins, parfums</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catégorie Maison -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="category-card" data-category="maison">
+                        <div class="category-image">
+                            <img src="IMG-20250616-WA0048.jpg" alt="Maison et Jardin">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <i class="bx bx-home category-icon"></i>
+                                    <h3 class="category-title">Maison & Jardin</h3>
+                                    <p class="category-description">Décoration, meubles, jardinage</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catégorie Mode -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="category-card" data-category="mode">
+                        <div class="category-image">
+                            <img src="IMG-20250616-WA0024.jpg" alt="Mode et Accessoires">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <i class="bx bx-t-shirt category-icon"></i>
+                                    <h3 class="category-title">Mode & Accessoires</h3>
+                                    <p class="category-description">Vêtements, chaussures, bijoux</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catégorie Cuisine -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="category-card" data-category="cuisine">
+                        <div class="category-image">
+                            <img src="IMG-20250616-WA0045.jpg" alt="Cuisine et Électroménager">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <i class="bx bx-restaurant category-icon"></i>
+                                    <h3 class="category-title">Cuisine & Électroménager</h3>
+                                    <p class="category-description">Ustensiles, appareils, accessoires</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Catégorie Livres -->
+                <div class="col-6 col-md-4 col-lg-3">
+                    <div class="category-card" data-category="livres">
+                        <div class="category-image">
+                            <img src="IMG-20250616-WA0027.jpg" alt="Livres et Culture">
+                            <div class="category-overlay">
+                                <div class="category-content">
+                                    <i class="bx bx-book-open category-icon"></i>
+                                    <h3 class="category-title">Livres & Culture</h3>
+                                    <p class="category-description">Livres, musique, films</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    
+    <!-- Section avantages modernisée -->
+    <section class="features py-5 my-5 fade-in" id="avantages">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold text-light mb-3">Pourquoi choisir BetaStore ?</h2>
+                <p class="lead text-light opacity-75">Nous nous engageons à vous offrir la meilleure expérience d'achat
+                    en ligne</p>
+            </div>
+
+            <div class="row g-4" id="importe">
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card border-none px-3 h-100" id="cart-trans">
+                        <div class="text-center py-4">
+                            <i class="bx bx-dollar-circle" id="icon"></i>
+                        </div>
+                        <h4 class="text-light text-center mb-3">Prix compétitifs</h4>
+                        <p class="text-center text-light opacity-75">Bénéficiez de prix avantageux et de réductions
+                            exclusives sur nos produits de qualité.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card border-none px-3 h-100" id="cart-trans">
+                        <div class="text-center py-4">
+                            <i class="bx bxs-truck" id="icon"></i>
+                        </div>
+                        <h4 class="text-light text-center mb-3">Livraison rapide</h4>
+                        <p class="text-center text-light opacity-75">Livraison express en 24-48h sur toute la France
+                            métropolitaine.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card border-none px-3 h-100" id="cart-trans">
+                        <div class="text-center py-4">
+                            <i class="bx bxs-shield" id="icon"></i>
+                        </div>
+                        <h4 class="text-light text-center mb-3">Garantie 2 ans</h4>
+                        <p class="text-center text-light opacity-75">Tous nos produits bénéficient d'une garantie de 2
+                            ans pour votre tranquillité.</p>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                    <div class="card border-none px-3 h-100" id="cart-trans">
+                        <div class="text-center py-4">
+                            <i class="bx bxs-star" id="icon"></i>
+                        </div>
+                        <h4 class="text-light text-center mb-3">Qualité premium</h4>
+                        <p class="text-center text-light opacity-75">Sélection rigoureuse de produits de marques
+                            reconnues et de qualité.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section comment ça marche modernisée -->
+    <div class="how-it-works my-5 py-5 fade-in" id="comment-ca-marche">
+        <div class="container py-4">
+            <div class="text-center mb-5">
+                <h2 class="display-6 fw-bold text-light mb-3">Comment ça marche ?</h2>
+                <p class="text-light opacity-75">Trois étapes simples pour commencer vos achats</p>
+            </div>
+
+            <div class="steps-grid">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Créez votre compte</h3>
+                    <p>Inscrivez-vous gratuitement en quelques clics et accédez à tous nos services.</p>
+                </div>
+
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Parcourez nos produits</h3>
+                    <p>Explorez notre large gamme de produits et trouvez ce qui vous convient.</p>
+                </div>
+
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Commandez et recevez</h3>
+                    <p>Passez votre commande et recevez vos produits rapidement à domicile.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section CTA modernisée -->
+    <section class="cta-section py-5 mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-6 fw-bold mb-4">Prêt à commencer vos achats ?</h2>
+                    <p class="lead mb-4">Rejoignez des milliers de clients satisfaits et profitez de nos offres
+                        exclusives.</p>
+                    <div class="d-flex gap-3">
+                        <a href="register.html" class="btn btn-success btn-lg">
+                            <i class="bx bx-user-plus me-2"></i>Créer un compte
+                        </a>
+                        <a href="discoverides.html" class="btn btn-dark btn-lg">
+                            <i class="bx bx-compass me-2"></i>Découvrir
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="top-view-desk-avec-des-cadeaux-de-vendredi-noir.jpg" alt="Shopping en ligne"
+                        class="img-fluid rounded">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer moderne -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3 text-white">BetaStore</h5>
+                    <p class="text-light opacity-75">Votre boutique en ligne de confiance pour tous vos besoins
+                        quotidiens.</p>
+                </div>
+
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3 text-white">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Accueil</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">A propos</a>
+                        </li>
+                        <li class="mb-2"><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Contactez-nous</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-white"><i class="bx bx-envelope me-2"></i>contact@betastore.bj</li>
+                        <li class="mb-2 text-white"><i class="bx bx-phone me-2"></i>+229 XX XX XX XX</li>
+                        <li class="mb-2 text-white"><i class="bx bx-map me-2"></i>Calavi, Quartier Zobadjè</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Nos réseaux</h6>
+                    <div class="d-flex gap-2 net">
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-facebook" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-instagram" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-twitter" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-whatsapp" id="mo"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4 text-white">
+            <div class="text-center">
+                <p class="mb-0 text-white">&copy; 2025 BetaStore. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton retour en haut -->
+    <a href="#" id="return">
+        <button class="btn">
+            <i class="bx bx-chevron-up" id="flèche"></i>
+        </button>
+    </a>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

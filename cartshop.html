@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Panier - BetaStore</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .cart-container {
+            margin-top: 120px;
+            background: linear-gradient(135deg, #4667fa 0%, #130f16 100%);
+            padding: 2rem 0;
+        }
+        
+        .cart-card {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .cart-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .cart-item {
+            border: 1px solid #e9ecef;
+            border-radius: 15px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .cart-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .product-image {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .quantity-btn {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 50%;
+            background: #f8f9fa;
+            color: #6c757d;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .quantity-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 0.5rem;
+        }
+        
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .remove-btn:hover {
+            background: #c82333;
+            transform: scale(1.05);
+        }
+        
+        .summary-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 2rem;
+        }
+        
+        .delivery-info {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #28a745;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: #393c3f;
+        }
+        
+        .empty-cart i {
+            font-size: 4rem;
+            color: #48494b;
+            margin-bottom: 1rem;
+        }
+        
+        .checkout-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .checkout-btn:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .checkout-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .price-highlight {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #28a745;
+        }
+        
+        .discount-badge {
+            background: #dc3545;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .delivery-status {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-processing {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-shipped {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-delivered {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+        
+        @media (max-width: 768px) {
+            .cart-container {
+                margin-top: 100px;
+                padding: 1rem 0;
+            }
+            
+            .cart-header {
+                padding: 1.5rem;
+            }
+            
+            .product-image {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header moderne -->
+    <header class="fixed-top pt-2" style="transition: top 0.4s ease; background-image: url(v1016-b-09.jpg);">
+        <div class="container-fluid p-2">
+            <div class="row">
+                <div class="col col-md-9 col-lg-12 d-flex flex-row justify-content-between align-items-center">
+                    <a class="navbar-brand ms-4" href="index.html">
+                        <i class="bx bxs-cart me-2 fs-2"></i>
+                        <span>BetaStore</span>
+                    </a>
+                    <form action="#" class="d-flex align-items-center" id="searchForm" method="submit"
+                        style="width: 25%;">
+                        <input type="text" class="h-25 m-auto" placeholder="Rechercher un produit.." id="search">
+                    </form>
+
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a href="cartshop.html" class="nav-link">
+                                <i class="bx bxs-cart"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="account.html" class="nav-link">
+                                <i class="bx bxs-user"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg p-2 bg-dark">
+            <div class="container">
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="menu">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a href="index.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-compass me-1"></i>Accueil
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="discoverides.html" class="nav-link fs-6 text-light">
+                                <i class="bx bx-info-circle me-1"></i>Découvrir
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="contact.html" class="nav-link fs-6 text-light">
+                                <i class="bx bxs-phone me-1"></i>Contact
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="d-flex gap-3">
+                        <button class="btn btn-outline-light text-light" id="loginBtn">
+                            Se connecter
+                        </button>
+                        <button class="btn btn-outline-success" id="registerBtn">
+                            S'inscrire
+                        </button>
+                    </div>
+
+                    <!-- Modals modernisés -->
+                    <div id="signupModal" class="modal justify-content-center">
+                        <div class="modal-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <h4 class="h2 fw-bold">Connectez-vous</h4>
+                            <form>
+                                <label class="form-label">Nom d'utilisateur ou email:</label><br>
+                                <input type="text" name="username" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" maxlength="10" minlength="10" required><br><br>
+                                <button type="submit" class="btn-signup w-100 rounded-pill">Se
+                                    connecter</button><br><br>
+                                <a href="#" class="p">Mot de passe oublié ?</a>
+                                <p class="p">Pas encore de compte ? <a href="#" class="text-success"
+                                        id="register1Btn">Créez-en un</a>
+                                </p>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 5%; bottom: 90%"
+                                onclick="document.getElementById('signupModal').style.display='none'"></button>
+                        </div>
+                    </div>
+
+                    <div id="loginModal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat: no-repeat; background-size: cover;">
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <h4 class="h2 fw-bold">Créez votre compte</h4>
+                                    <form>
+                                        <label class="form-label">Nom:</label><br>
+                                        <input type="text" name="lastname" required><br>
+                                        <label class="form-label">Prénom:</label><br>
+                                        <input type="text" name="name" required><br>
+                                        <label class="form-label">Email ou Téléphone:</label><br><br>
+                                        <input type="text" name="email" placeholder="adounkpemike@gmail.com"
+                                            required><br>
+                                        <label class="form-label">Mot de passe:</label><br>
+                                        <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                            maxlength="10" minlength="10" required><br><br>
+                                        <button type="submit" class="btn-login w-100 rounded-pill"><a href="index.html"
+                                                class="text-decoration-none text-white">S'inscrire</a></button><br><br>
+
+                                        <p class="p">Avez-vous déjà un compte ? <a href="#" class="text-success"
+                                                id="loginBtn">Se
+                                                connecter</a></p>
+                                    </form>
+                                    <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%"
+                                        onclick="document.getElementById('loginModal').style.display='none'"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="login1Modal" class="modal justify-content-center">
+                        <div class="log-content container text-center text-light fade-in"
+                            style="background-image: url(barre-recherche-recherche-icones-rendu-3d-design-minimal-fond-multicolore_41204-14142.jpg); background-repeat:no-repeat; background-size: cover;">
+                            <h4 class=" h2 fw-bold">Créez votre compte</h4>
+                            <form>
+                                <label class="form-label">Nom:</label><br>
+                                <input type="text" name="lastname" required><br>
+                                <label class="form-label">Prénom:</label><br>
+                                <input type="text" name="name" required><br>
+                                <label class="form-label">Email ou Téléphone:</label><br><br>
+                                <input type="text" name="email" placeholder="adounkpemike@gmail.com" required><br>
+                                <label class="form-label">Mot de passe:</label><br>
+                                <input type="password" name="password" placeholder="Au moins 10 caractères"
+                                    maxlength="10" minlength="10" required><br><br>
+                                <button type="submit"
+                                    class="btn-login w-100 mt-2 rounded-pill">S'inscrire</button><br><br>
+                            </form>
+                            <button class="btn-close" style="position: absolute; right: 3%; bottom: 92%;"
+                                onclick="document.getElementById('login1Modal').style.display='none'"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenu principal du panier -->
+    <div class="cart-container">
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Liste des produits -->
+                <div class="col-lg-8">
+                    <div class="cart-card">
+                        <div class="cart-header">
+                            <h1 class="mb-0">
+                                <i class="bx bxs-cart me-2" style="font-size: 2.5rem;"></i>
+                                Mon Panier
+                            </h1>
+                            <p class="mb-0 mt-2">Gérez vos produits et suivez vos commandes</p>
+                        </div>
+                        
+                        <div class="p-4">
+                            <div id="cart-items">
+                                <!-- Les produits seront ajoutés dynamiquement ici -->
+                            </div>
+                            
+                            <div id="empty-cart" class="empty-cart" style="display: none;">
+                                <i class="bx bx-cart"></i>
+                                <h3>Votre panier est vide</h3>
+                                <p>Ajoutez des produits pour commencer vos achats</p>
+                                <a href="discoverides.html" class="btn btn-success">
+                                    <i class="bx bx-compass me-2" style="font-size: 2rem"></i>Découvrir nos produits
+                                </a>
+                                <a href="contact.html" class="btn btn-secondary ms-2">
+                                    <i class="bx bx-compass me-2" style="font-size: 2rem"></i>Commencez vos achats
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Résumé et commande -->
+                <div class="col-lg-4">
+                    <div class="summary-card">
+                        <h3 class="mb-4">
+                            <i class="bx bx-receipt me-2"></i>
+                            Résumé de commande
+                        </h3>
+                        
+                        <div class="delivery-info">
+                            <h6><i class="bx bx-calendar me-2"></i>Informations de livraison</h6>
+                            <p class="mb-1"><strong>Date de commande :</strong> <span id="order-date"></span></p>
+                            <p class="mb-1"><strong>Livraison estimée :</strong> <span id="delivery-date"></span></p>
+                            <p class="mb-0"><strong>Statut :</strong> <span class="delivery-status status-pending" id="delivery-status">En attente</span></p>
+                        </div>
+                        
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="delivery-progress" style="width: 0%"></div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Sous-total :</span>
+                                <span id="subtotal">Indefined</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Livraison :</span>
+                                <span id="shipping">Gratuite</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Réduction :</span>
+                                <span id="discount">Indefined</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between mb-3">
+                                <strong>Total :</strong>
+                                <span class="price-highlight" id="total">Indefined</span>
+                            </div>
+                        </div>
+                        
+                        <button class="checkout-btn" id="checkout-btn" disabled>
+                            <i class="bx bx-credit-card me-2"></i>
+                            Passer la commande
+                        </button>
+                        
+                        <div class="mt-3 text-center">
+                            <small>Paiement sécurisé par Mobile money ou orange</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer moderne -->
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3 text-white">BetaStore</h5>
+                    <p class="text-light opacity-75">Votre boutique en ligne de confiance pour tous vos besoins
+                        quotidiens.</p>
+                </div>
+
+                <div class="col-lg-2">
+                    <h6 class="fw-bold mb-3 text-white">Navigation</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Accueil</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">A propos</a>
+                        </li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Contactez-nous</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2 text-white"><i class="bx bx-envelope me-2"></i>contact@betastore.bj</li>
+                        <li class="mb-2 text-white"><i class="bx bx-phone me-2"></i>+229 XX XX XX XX</li>
+                        <li class="mb-2 text-white"><i class="bx bx-map me-2"></i>Calavi, Quartier Zobadjè</li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3">
+                    <h6 class="fw-bold mb-3 text-white">Nos réseaux</h6>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-facebook" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-instagram" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-twitter" id="mo"></i>
+                        </a>
+                        <a href="#" class="socialnetworks">
+                            <i class="bx bxl-whatsapp" id="mo"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr class="my-4 text-white">
+            <div class="text-center">
+                <p class="mb-0 text-white">&copy; 2025 BetaStore. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Bouton retour en haut -->
+    <a href="#" id="return">
+        <button class="btn">
+            <i class="bx bx-chevron-up" id="flèche" style="display: flex; justify-content: center;"></i>
+        </button>
+    </a>
+
+    <script src="bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+          // Données du panier
+        let cartItems = [];
+        let cartTotal = 0;
+        let shippingCost = 0;
+        let discount = 0;
+
+        // Initialisation du panier
+        document.addEventListener('DOMContentLoaded', function() {
+            // Attendre que l'application BetaStoreApp soit initialisée
+            setTimeout(() => {
+                if (window.betaStoreApp) {
+                    // Utiliser le panier de l'application principale
+                    cartItems = window.betaStoreApp.getCart();
+                }
+                
+                // Mettre à jour l'affichage
+                updateCartDisplay();
+                updateDeliveryInfo();
+                
+                // Écouteurs d'événements
+                document.getElementById('checkout-btn').addEventListener('click', processCheckout);
+            }, 100);
+        });
+
+        // Fonction pour ajouter un produit au panier (maintenant gérée par script.js)
+        function addToCart(productId, quantity = 1) {
+            // Cette fonction est maintenant gérée par la classe BetaStoreApp dans script.js
+            console.log('Fonction addToCart appelée depuis cartshop.html - utiliser script.js à la place');
+        }
+
+        // Fonction pour supprimer un produit du panier
+        function removeFromCart(productId) {
+            cartItems = cartItems.filter(item => item.id !== productId);
+            saveCart();
+            updateCartDisplay();
+        }
+
+        // Fonction pour mettre à jour la quantité
+        function updateQuantity(productId, newQuantity) {
+            const item = cartItems.find(item => item.id === productId);
+            if (item) {
+                if (newQuantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    item.quantity = newQuantity;
+                    saveCart();
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        // Fonction pour sauvegarder le panier
+        function saveCart() {
+            if (window.betaStoreApp) {
+                // Utiliser l'application principale pour sauvegarder
+                window.betaStoreApp.saveCart();
+            } else {
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            }
+        }
+
+        // Fonction pour mettre à jour le compteur du panier
+        function updateCartCount() {
+            if (window.betaStoreApp) {
+                // Utiliser l'application principale pour mettre à jour le compteur
+                window.betaStoreApp.updateCartCount();
+            } else {
+                const cartBadge = document.querySelector('.badge');
+                const cartIcon = document.querySelector('.bxs-cart');
+                
+                const totalItems = cartItems.reduce((total, item) => total + item.quantity, 0);
+                
+                if (cartBadge) {
+                    cartBadge.textContent = totalItems;
+                    cartBadge.style.animation = 'pulse 0.5s ease-in-out';
+                }
+                
+                // Si pas de badge, créer un indicateur visuel sur l'icône du panier
+                if (cartIcon && !cartBadge) {
+                    // Supprimer l'ancien badge s'il existe
+                    const existingBadge = cartIcon.parentElement.querySelector('.cart-badge');
+                    if (existingBadge) {
+                        existingBadge.remove();
+                    }
+                    
+                    if (totalItems > 0) {
+                        const badge = document.createElement('span');
+                        badge.className = 'cart-badge';
+                        badge.textContent = totalItems;
+                        badge.style.cssText = `
+                            position: absolute;
+                            top: -8px;
+                            right: -8px;
+                            background: #dc3545;
+                            color: white;
+                            border-radius: 50%;
+                            width: 20px;
+                            height: 20px;
+                            font-size: 12px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            font-weight: bold;
+                        `;
+                        
+                        cartIcon.parentElement.style.position = 'relative';
+                        cartIcon.parentElement.appendChild(badge);
+                    }
+                }
+            }
+        }
+
+        // Fonction pour charger le panier
+        function loadCart() {
+            if (window.betaStoreApp) {
+                // Utiliser l'application principale pour charger le panier
+                cartItems = window.betaStoreApp.getCart();
+            } else {
+                const saved = localStorage.getItem('cartItems');
+                if (saved) {
+                    cartItems = JSON.parse(saved);
+                }
+            }
+            // Mettre à jour le compteur du panier
+            updateCartCount();
+        }
+
+        // Fonction pour mettre à jour l'affichage du panier
+        function updateCartDisplay() {
+            const cartContainer = document.getElementById('cart-items');
+            const emptyCart = document.getElementById('empty-cart');
+            
+            if (cartItems.length === 0) {
+                cartContainer.innerHTML = '';
+                emptyCart.style.display = 'block';
+                document.getElementById('checkout-btn').disabled = true;
+            } else {
+                emptyCart.style.display = 'none';
+                document.getElementById('checkout-btn').disabled = false;
+                
+                cartContainer.innerHTML = cartItems.map(item => `
+                    <div class="cart-item p-3">
+                        <div class="row align-items-center">
+                            <div class="col-md-2 col-3">
+                                <img src="${item.image}" alt="${item.name}" class="product-image">
+                            </div>
+                            <div class="col-md-4 col-6">
+                                <h6 class="mb-1">${item.name}</h6>
+                                <small class="text-muted">${item.category}</small>
+                                <div class="mt-2">
+                                    <span class="price-highlight">${item.price.toFixed(2)}€</span>
+                                    ${item.price > 500 ? '<span class="discount-badge ms-2">-10%</span>' : ''}
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-6">
+                                <div class="quantity-controls">
+                                    <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})">-</button>
+                                    <input type="number" class="quantity-input" value="${item.quantity}" min="1" 
+                                           onchange="updateQuantity('${item.id}', parseInt(this.value))">
+                                    <button class="quantity-btn" onclick="updateQuantity('${item.id}', ${item.quantity + 1})">+</button>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-6 text-end">
+                                <div class="mb-2">
+                                    <strong>${(item.price * item.quantity).toFixed(2)}€</strong>
+                                </div>
+                                <button class="remove-btn" onclick="removeFromCart('${item.id}')">
+                                    <i class="bx bx-trash me-1"></i>Supprimer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            
+            updateSummary();
+            updateCartCount();
+        }
+
+        // Fonction pour mettre à jour le résumé
+        function updateSummary() {
+            cartTotal = cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
+            
+            // Calcul de la réduction (10% sur les produits > 500€)
+            discount = cartItems.reduce((total, item) => {
+                if (item.price > 500) {
+                    return total + (item.price * item.quantity * 0.1);
+                }
+                return total;
+            }, 0);
+            
+            // Frais de livraison gratuits si total > 50€
+            shippingCost = cartTotal > 50 ? 0 : 5.99;
+            
+            const finalTotal = cartTotal - discount + shippingCost;
+            
+            document.getElementById('subtotal').textContent = cartTotal.toFixed(2) + '€';
+            document.getElementById('discount').textContent = '-' + discount.toFixed(2) + '€';
+            document.getElementById('shipping').textContent = shippingCost === 0 ? 'Gratuite' : shippingCost.toFixed(2) + '€';
+            document.getElementById('total').textContent = finalTotal.toFixed(2) + '€';
+        }
+
+        // Fonction pour mettre à jour les informations de livraison
+        function updateDeliveryInfo() {
+            const now = new Date();
+            const orderDate = now.toLocaleDateString('fr-FR');
+            const deliveryDate = new Date(now.getTime() + (3 * 24 * 60 * 60 * 1000)).toLocaleDateString('fr-FR');
+            
+            document.getElementById('order-date').textContent = orderDate;
+            document.getElementById('delivery-date').textContent = deliveryDate;
+            
+            // Simulation du suivi de livraison
+            simulateDeliveryProgress();
+        }
+
+        // Fonction pour simuler le suivi de livraison
+        function simulateDeliveryProgress() {
+            const progressBar = document.getElementById('delivery-progress');
+            const statusElement = document.getElementById('delivery-status');
+            const statuses = [
+                { text: 'En attente', class: 'status-pending', progress: 0 },
+                { text: 'En traitement', class: 'status-processing', progress: 25 },
+                { text: 'Expédié', class: 'status-shipped', progress: 60 },
+                { text: 'Livré', class: 'status-delivered', progress: 100 }
+            ];
+            
+            let currentStatus = 0;
+            
+            const updateStatus = () => {
+                if (currentStatus < statuses.length) {
+                    const status = statuses[currentStatus];
+                    statusElement.textContent = status.text;
+                    statusElement.className = `delivery-status ${status.class}`;
+                    progressBar.style.width = status.progress + '%';
+                    currentStatus++;
+                    
+                    if (currentStatus < statuses.length) {
+                        setTimeout(updateStatus, 3000);
+                    }
+                }
+            };
+            
+            setTimeout(updateStatus, 2000);
+        }
+
+        // Fonction pour traiter la commande
+        function processCheckout() {
+            if (cartItems.length === 0) {
+                alert('Votre panier est vide !');
+                return;
+            }
+            
+            const total = parseFloat(document.getElementById('total').textContent.replace('€', ''));
+            
+            // Simulation de paiement
+            const paymentModal = `
+                <div class="modal fade" id="paymentModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Paiement sécurisé</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="text-center mb-4">
+                                    <i class="bx bx-credit-card" style="font-size: 3rem; color: #667eea;"></i>
+                                </div>
+                                <p>Total à payer : <strong>${total.toFixed(2)}€</strong></p>
+                                <div class="mb-3">
+                                    <label class="form-label">Numéro de carte</label>
+                                    <input type="text" class="form-control" placeholder="1234 5678 9012 3456">
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label class="form-label">Date d'expiration</label>
+                                        <input type="text" class="form-control" placeholder="MM/AA">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">CVV</label>
+                                        <input type="text" class="form-control" placeholder="123">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-primary" onclick="confirmPayment()">Payer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Ajouter le modal au DOM
+            if (!document.getElementById('paymentModal')) {
+                document.body.insertAdjacentHTML('beforeend', paymentModal);
+            }
+            
+            // Afficher le modal
+            const modal = new bootstrap.Modal(document.getElementById('paymentModal'));
+            modal.show();
+        }
+
+        // Fonction pour confirmer le paiement
+        function confirmPayment() {
+            // Fermer le modal
+            bootstrap.Modal.getInstance(document.getElementById('paymentModal')).hide();
+            
+            // Simulation de traitement
+            setTimeout(() => {
+                alert('Paiement traité avec succès ! Votre commande a été confirmée.');
+                
+                // Vider le panier via l'application principale
+                if (window.betaStoreApp) {
+                    window.betaStoreApp.clearCart();
+                } else {
+                    cartItems = [];
+                    saveCart();
+                }
+                updateCartDisplay();
+                
+                // Rediriger vers la page d'accueil
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 2000);
+            }, 1500);
+        }
+
+        // Fonction pour ajouter un produit d'exemple (pour test)
+        function addSampleProduct() {
+            const randomProduct = sampleProducts[Math.floor(Math.random() * sampleProducts.length)];
+            addToCart(randomProduct.id, 1);
+        }
+    </script>
+</body>
+</html>
