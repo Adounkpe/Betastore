@@ -20,7 +20,7 @@
     --gradient-dark: linear-gradient(135deg, #8775ee 0%, #afafaf 100%);
     --border-radius: 12px;
     --border-radius-lg: 20px;
-    --transition: all 0.2s ease;
+    --transition: all 0.3s ease;
 }
 
 body {
@@ -159,6 +159,7 @@ header {
 
 #defile-image:hover img {
     transform: scale(1.02);
+
 }
 
 #titre {
@@ -193,7 +194,7 @@ header {
 .card {
     border: none;
     border-radius: var(--border-radius);
-    padding: 0.5rem;
+    padding: 0.1rem;
     background: rgba(255, 255, 255, 0.9);
     box-shadow: var(--shadow-soft);
     transition: var(--transition);
@@ -513,6 +514,10 @@ input[type="password"]:focus {
         margin-bottom: 1rem;
     }
 
+    .card-title{
+        font-size: 1rem;
+    }
+
     .card-text{
         font-size: 0.75rem;
     }
@@ -530,12 +535,17 @@ input[type="password"]:focus {
         font-size: 0.75rem;
     }
 
-    .card-title{
-        font-size: 1rem;
+    .navigation{
+        display: none;
     }
 
-     .product-title{
-        font-size: 1rem;
+    .form{
+        width: 50%;
+        margin: auto;
+    }
+
+    .card-title{
+        font-size: 0.75rem;
     }
 
     .add-to-cart{
@@ -560,8 +570,12 @@ input[type="password"]:focus {
     }
 
     #search {
-        padding: 8px;
+        padding: 6px;
         font-size: 0.9rem;
+    }
+
+    .h_title{
+        font-size: 1rem
     }
 
     .h8{
@@ -627,7 +641,7 @@ input[type="password"]:focus {
 .carousel-control-prev:hover,
 .carousel-control-next:hover {
     background: rgba(0, 0, 0, 0.5);
-    transform: scale(1.1);
+    transform: scale(1.02);
 }
 
 /* Categories Section */
@@ -747,6 +761,12 @@ input[type="password"]:focus {
     .category-description {
         font-size: 0.8rem;
     }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+    width: 30px;
+    height: 30px;
+}
 }
 
 @media (max-width: 576px) {
@@ -765,6 +785,12 @@ input[type="password"]:focus {
     .category-description {
         font-size: 0.75rem;
     }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+    width: 30px;
+    height: 30px;
+}
 }
 
 /* Modern Products Carousel */
@@ -808,7 +834,7 @@ input[type="password"]:focus {
 
 .products-carousel .product-image {
     position: relative;
-    height: 230px;
+    height: 150px;
     overflow: hidden;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
@@ -818,6 +844,10 @@ input[type="password"]:focus {
     height: 100%;
     object-fit: cover;
     transition: var(--transition);
+}
+
+.products-carousel .product-title{
+    font-size: 1.5rem;
 }
 
 .products-carousel .product-card:hover .product-image img {
@@ -916,8 +946,8 @@ input[type="password"]:focus {
 @media (max-width: 576px) {
 
     .products-carousel .product-card {
-        min-width: 250px;
-        max-width: 250px;
+        min-width: 200px;
+        max-width: 200px;
     }
 
     .carousel-nav-btn {
@@ -1034,12 +1064,11 @@ input[type="password"]:focus {
     background: rgba(230, 230, 230, 0.5);
     border-radius: var(--border-radius);
     position: relative;
-    height: 100%;
 }
 
 .products-section .product-image {
     position: relative;
-    height: 250px;
+    height: 200px;
     overflow: hidden;
 }
 
@@ -1071,7 +1100,7 @@ input[type="password"]:focus {
 }
 
 .products-section .product-info {
-    padding: 1rem;
+    padding: 0.75rem;
     display: flex;
     flex-direction: column;
 }
@@ -1096,7 +1125,7 @@ input[type="password"]:focus {
     color: var(--gray-medium);
     font-size: 1rem;
     line-height: 1.4;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     flex-grow: 1;
 }
 
@@ -1171,16 +1200,18 @@ input[type="password"]:focus {
 /* Responsive adjustments for discoverides */
 @media (max-width: 768px) {
     .filters-grid {
+        display: flex;
+        flex-direction: row;
         gap: 0.5rem;
     }
 
     .filter-btn {
-        padding: 8px 16px;
-        font-size: 0.9rem;
+        padding: 4px 8px;
+        font-size: 0.75rem;
     }
 
     .products-section .product-card {
-        margin-bottom: 1rem;
+        margin-bottom: 0rem;
     }
 
     .hero-section h1 {
@@ -1200,15 +1231,17 @@ input[type="password"]:focus {
     }
 
     .product-card .product-price{
-        font-size: 0.75rem;
+        font-size: 0.5rem;
     }
 
     .product-card .add-to-cart{
         font-size: 0.5rem;
+        padding: 0.5rem;
     }
 
     .product-card .product-category{
-        font-size: 0.75rem;
+        font-size: 0.5rem;
+        margin-bottom: 0rem;
     }
 
     .product-card{
@@ -1216,40 +1249,55 @@ input[type="password"]:focus {
     }
 
     .product-card .product-title{
-        font-size: 0.5rem;
+        font-size: 0.75rem;
+        margin-bottom: 0rem;
     }
 
-    .product-section{
+     .product-card .product-description{
+        font-size: 0.75rem;
+        margin-bottom: 0rem;
+    }
+
+    .products-section{
         padding: 0;
     }
 }
 
 @media (max-width: 576px) {
     .filters-grid {
-        flex-direction: column;
-        align-items: center;
+        display: flex;
+        flex-direction: row;
     }
 
     .filter-btn {
-        width: 100%;
-        max-width: 200px;
-        justify-content: center;
+        width: 75%;
+        max-width: 100px;
+        font-size: 0.75rem;
+    }
+
+    .products-section{
+        padding: 0;
     }
 
     .products-section .product-image {
         height: 150px;
     }
 
+     .products-section .product-card {
+        max-width: 200px;
+        margin-bottom: 0rem;
+    }
+
     .products-section .product-info {
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
     .products-section .product-title {
-        font-size: 1rem;
+        font-size: 0.75rem;
     }
 
     .products-section .product-description {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 }
 
